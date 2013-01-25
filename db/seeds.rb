@@ -17,7 +17,18 @@ user = User.find_or_create_by_email :name => ENV['ADMIN_NAME'].dup, :email => EN
 puts 'user: ' << user.name
 user.add_role :admin
 
-OrganisationType.create(name: 'County')
-OrganisationType.create(name: 'District')
-OrganisationType.create(name: 'Group')
-OrganisationType.create(name: 'Section')
+OrganisationType.delete_all
+county = OrganisationType.create(name: 'Scout County')
+OrganisationType.create(name: 'Scout District')
+OrganisationType.create(name: 'Scout Group')
+OrganisationType.create(name: 'Beaver Scout Section')
+OrganisationType.create(name: 'Cub Scout Section')
+OrganisationType.create(name: 'Scout Section')
+OrganisationType.create(name: 'Explorer Scout Section')
+puts 'Created Organisation Types'
+
+Organisation.delete_all
+cheshire = Organisation.new(name: 'Cheshire Scouts')
+cheshire.organisation_type = county
+cheshire.save
+puts 'Created Organisations'

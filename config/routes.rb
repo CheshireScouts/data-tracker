@@ -1,5 +1,5 @@
 DataTracker::Application.routes.draw do
-  resources :organisation_types
+  resources :organisation_types, :organisations
 
 
   authenticated :user do
