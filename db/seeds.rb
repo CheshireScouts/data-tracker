@@ -19,7 +19,7 @@ user.add_role :admin
 
 OrganisationType.delete_all
 county = OrganisationType.create(name: 'Scout County')
-OrganisationType.create(name: 'Scout District')
+district = OrganisationType.create(name: 'Scout District')
 OrganisationType.create(name: 'Scout Group')
 OrganisationType.create(name: 'Beaver Scout Section')
 OrganisationType.create(name: 'Cub Scout Section')
@@ -30,5 +30,11 @@ puts 'Created Organisation Types'
 Organisation.delete_all
 cheshire = Organisation.new(name: 'Cheshire Scouts')
 cheshire.organisation_type = county
+cheshire.parent = cheshire
 cheshire.save
+
+mersey = Organisation.new(name: 'Mersey Weaver')
+mersey.organisation_type = district
+mersey.parent = cheshire
+mersey.save
 puts 'Created Organisations'
