@@ -3,7 +3,7 @@ DataTracker::Application.routes.draw do
 
 
   authenticated :user do
-    root :to => 'home#index'
+    root :to => 'organisations#index'
   end
   root :to => "home#index"
   devise_for :users
