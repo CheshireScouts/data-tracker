@@ -12,7 +12,7 @@
   <tbody>
     <% @organisation_types.each do |organisation_type| %>
       <tr>
-        <td><%= organisation_type.name %></td>
+        <td><%= link_to organisation_type.name, organisation_type_path(organisation_type) %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_organisation_type_path(organisation_type), :class => 'btn btn-mini' %>
