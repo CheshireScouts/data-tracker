@@ -24,7 +24,9 @@ OrganisationType.create(name: 'Scout Group')
 OrganisationType.create(name: 'Beaver Scout Section')
 OrganisationType.create(name: 'Cub Scout Section')
 OrganisationType.create(name: 'Scout Section')
-OrganisationType.create(name: 'Explorer Scout Section')
+OrganisationType.create(name: 'Explorer Scout Unit')
+OrganisationType.create(name: 'Network Unit')
+OrganisationType.create(name: 'Active Support Unit')
 puts 'Created Organisation Types'
 
 Organisation.delete_all
