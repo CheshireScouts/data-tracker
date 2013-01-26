@@ -5,18 +5,14 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th><%= model_class.human_attribute_name(:id) %></th>
       <th><%= model_class.human_attribute_name(:name) %></th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
   <tbody>
     <% @organisation_types.each do |organisation_type| %>
       <tr>
-        <td><%= link_to organisation_type.id, organisation_type_path(organisation_type) %></td>
         <td><%= organisation_type.name %></td>
-        <td><%=l organisation_type.created_at %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_organisation_type_path(organisation_type), :class => 'btn btn-mini' %>
