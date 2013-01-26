@@ -20,13 +20,13 @@ user.add_role :admin
 OrganisationType.delete_all
 county = OrganisationType.create(name: 'Scout County')
 district = OrganisationType.create(name: 'Scout District')
-OrganisationType.create(name: 'Scout Group')
-OrganisationType.create(name: 'Beaver Scout Section')
-OrganisationType.create(name: 'Cub Scout Section')
-OrganisationType.create(name: 'Scout Section')
-OrganisationType.create(name: 'Explorer Scout Unit')
-OrganisationType.create(name: 'Network Unit')
-OrganisationType.create(name: 'Active Support Unit')
+group = OrganisationType.create(name: 'Scout Group')
+beavers = OrganisationType.create(name: 'Beaver Scout Section')
+cubs = OrganisationType.create(name: 'Cub Scout Section')
+scouts = OrganisationType.create(name: 'Scout Section')
+explorers = OrganisationType.create(name: 'Explorer Scout Unit')
+network = OrganisationType.create(name: 'Network Unit')
+asu = OrganisationType.create(name: 'Active Support Unit')
 puts 'Created Organisation Types'
 
 Organisation.delete_all
@@ -35,8 +35,18 @@ cheshire.organisation_type = county
 cheshire.parent = cheshire
 cheshire.save
 
-mersey = Organisation.new(name: 'Mersey Weaver')
-mersey.organisation_type = district
-mersey.parent = cheshire
-mersey.save
+alderley = Organisation.create(name: 'Alderley', organisation_type: district, parent: cheshire)
+chester = Organisation.create(name: 'Chester', organisation_type: district, parent: cheshire)
+ellesmere = Organisation.create(name: 'Ellesemere Port and Neston', organisation_type: district, parent: cheshire)
+knutsford = Organisation.create(name: 'Knutsford', organisation_type: district, parent: cheshire)
+macc = Organisation.create(name: 'Macclesfield and Congleton', organisation_type: district, parent: cheshire)
+mersey = Organisation.create(name: 'Mersey Weaver', organisation_type: district, parent: cheshire)
+mid = Organisation.create(name: 'Mid Cheshire', organisation_type: district, parent: cheshire)
+sw = Organisation.create(name: 'South West Cheshire', organisation_type: district, parent: cheshire)
+warringtonE = Organisation.create(name: 'Warrington East', organisation_type: district, parent: cheshire)
+warringtonW = Organisation.create(name: 'Warrington West', organisation_type: district, parent: cheshire)
+puts 'Created Districts'
+
+Organisation.create(name: '1st Helsby', organisation_type: group, parent: mersey)
+puts 'Created Groups'
 puts 'Created Organisations'
