@@ -30,11 +30,7 @@ asu = OrganisationType.create(name: 'Active Support Unit')
 puts 'Created Organisation Types'
 
 Organisation.delete_all
-cheshire = Organisation.new(name: 'Cheshire Scouts')
-cheshire.organisation_type = county
-cheshire.parent = cheshire
-cheshire.save
-
+cheshire = Organisation.create(name: 'Cheshire Scouts', organisation_type: county)
 alderley = Organisation.create(name: 'Alderley', organisation_type: district, parent: cheshire)
 chester = Organisation.create(name: 'Chester', organisation_type: district, parent: cheshire)
 ellesmere = Organisation.create(name: 'Ellesemere Port and Neston', organisation_type: district, parent: cheshire)

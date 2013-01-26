@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130125171241) do
+ActiveRecord::Schema.define(:version => 20130126193305) do
 
   create_table "organisation_types", :force => true do |t|
     t.string   "name"
@@ -22,11 +22,12 @@ ActiveRecord::Schema.define(:version => 20130125171241) do
   create_table "organisations", :force => true do |t|
     t.string   "name"
     t.integer  "organisation_type_id"
-    t.integer  "parent_id"
     t.datetime "created_at",           :null => false
     t.datetime "updated_at",           :null => false
+    t.string   "ancestry"
   end
 
+  add_index "organisations", ["ancestry"], :name => "index_organisations_on_ancestry"
   add_index "organisations", ["organisation_type_id"], :name => "index_organisations_on_organisation_type_id"
 
   create_table "roles", :force => true do |t|

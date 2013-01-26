@@ -16,7 +16,7 @@
       <tr>
         <td><%= link_to organisation.name, organisation_path(organisation) %></td>
         <td><%= organisation.organisation_type.name %></td>
-        <td><%= link_to organisation.parent.name, organisation_path(organisation.parent) %></td>
+        <td><%= link_to organisation.parent.name, organisation_path(organisation.parent) if organisation.parent %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_organisation_path(organisation), :class => 'btn btn-mini' %>
