@@ -1,4 +1,4 @@
-<%= link_to "Data Tracker", root_path, :class => 'brand' %>
+<span class="brand"><%= link_to "Data Tracker", root_path %> <%= "#{yield(:app_name)}" %></span>
 <ul class="nav">
   <% if user_signed_in? %>
     <li>
@@ -17,6 +17,7 @@
       <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Admin<b class="caret"></b></a>
         <ul class="dropdown-menu">
           <li><%= link_to 'Users', users_path %></li>
+          <li><%= link_to 'Organisations', organisations_path %></li>
           <li><%= link_to 'Organisation Types', organisation_types_path %></li>
         </ul>
       </li>
