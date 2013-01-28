@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130126193305) do
+ActiveRecord::Schema.define(:version => 20130128124509) do
 
   create_table "organisation_types", :force => true do |t|
     t.string   "name"
@@ -66,5 +66,11 @@ ActiveRecord::Schema.define(:version => 20130126193305) do
   end
 
   add_index "users_roles", ["user_id", "role_id"], :name => "index_users_roles_on_user_id_and_role_id"
+
+  create_table "years", :force => true do |t|
+    t.integer  "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
 end

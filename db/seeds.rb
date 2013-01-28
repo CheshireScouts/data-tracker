@@ -17,6 +17,23 @@ user = User.find_or_create_by_email :name => ENV['ADMIN_NAME'].dup, :email => EN
 puts 'user: ' << user.name
 user.add_role :admin
 
+Year.delete_all
+Year.create(name: 2000)
+Year.create(name: 2001)
+Year.create(name: 2002)
+Year.create(name: 2003)
+Year.create(name: 2004)
+Year.create(name: 2005)
+Year.create(name: 2006)
+Year.create(name: 2007)
+Year.create(name: 2008)
+Year.create(name: 2009)
+Year.create(name: 2010)
+Year.create(name: 2011)
+Year.create(name: 2012)
+Year.create(name: 2013)
+puts 'Created Years'
+
 OrganisationType.delete_all
 county = OrganisationType.create(name: 'Scout County')
 district = OrganisationType.create(name: 'Scout District')

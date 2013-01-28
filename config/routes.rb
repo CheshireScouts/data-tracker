@@ -1,4 +1,7 @@
 DataTracker::Application.routes.draw do
+  resources :years
+
+
   resources :organisation_types, :organisations
 
 
