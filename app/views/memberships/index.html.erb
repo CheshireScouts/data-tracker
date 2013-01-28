@@ -15,10 +15,10 @@
   <tbody>
     <% @memberships.each do |membership| %>
       <tr>
-        <td><%= membership.organisation_id %></td>
-        <td><%= membership.year_id %></td>
-        <td><%= membership.gender %></td>
-        <td><%= membership.membership_type %></td>
+        <td><%= link_to membership.organisation.name, organisation_path(membership.organisation) %></td>
+        <td><%= membership.year.name%></td>
+        <td><%= Membership::GENDERS[membership.gender] %></td>
+        <td><%= Membership::MEMBERSHIP_TYPES[membership.membership_type] %></td>
         <td><%= membership.head_count %></td>
       </tr>
     <% end %>

@@ -4,4 +4,8 @@ class Membership < ActiveRecord::Base
   belongs_to :organisation
   belongs_to :year
   attr_accessible :organisation, :organisation_id, :year, :year_id, :gender, :head_count, :membership_type
+
+  def gender_text
+  	GENDERS[gender]
+  end
 end
