@@ -1,0 +1,11 @@
+<%= simple_form_for @membership, :html => { :class => 'form-horizontal' } do |f| %>
+  <%= f.input :organisation_id %>
+  <%= f.input :year_id %>
+  <%= f.input :gender %>
+  <%= f.input :membership_type %>
+  <div class="form-actions">
+    <%= f.button :submit, :class => 'btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                memberships_path, :class => 'btn' %>
+  </div>
+<% end %>
