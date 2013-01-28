@@ -1,7 +1,8 @@
 <%= simple_form_for @award, :html => { :class => 'form-horizontal' } do |f| %>
-  <%= f.input :organisation_id %>
-  <%= f.input :year_id %>
-  <%= f.input :award_type_id %>
+  <%= f.association :organisation, collection: Organisation.all(order: 'name'), value_method: :id, label_method: :name, include_blank: false %>
+  <%= f.association :year, collection: Year.all(order: 'name'), value_method: :id, label_method: :name, include_blank: false %>
+  <%= f.association :award_type, collection: AwardType.all(order: 'name'), value_method: :id, label_method: :name, include_blank: false %>
+  <%= f.input :award_count %>
   <div class="form-actions">
     <%= f.button :submit, :class => 'btn-primary' %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),

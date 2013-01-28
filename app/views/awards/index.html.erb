@@ -8,15 +8,18 @@
       <th><%= model_class.human_attribute_name(:organisation_id) %></th>
       <th><%= model_class.human_attribute_name(:year_id) %></th>
       <th><%= model_class.human_attribute_name(:award_type_id) %></th>
+      <th><%= model_class.human_attribute_name(:award_count) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
   <tbody>
     <% @awards.each do |award| %>
       <tr>
-        <td><%= award.organisation_id %></td>
-        <td><%= award.year_id %></td>
-        <td><%= award.award_type_id %></td>
+        <td><%= link_to award.organisation.name, organisation_path(award.organisation) %></td>
+        <td><%= award.year.name%></td>
+
+        <td><%= award.award_type.name %></td>
+        <td><%= award.award_count %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_award_path(award), :class => 'btn btn-mini' %>
