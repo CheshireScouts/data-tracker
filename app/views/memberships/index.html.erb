@@ -1,4 +1,5 @@
 <%- model_class = Membership -%>
+<% years = Year.find(:all) %>
 <div class="page-header">
   <h1><%=t '.title', :default => model_class.model_name.human %></h1>
 </div>
@@ -6,25 +7,19 @@
   <thead>
     <tr>
       <th><%= model_class.human_attribute_name(:organisation_id) %></th>
-      <th><%= model_class.human_attribute_name(:year_id) %></th>
-      <th><%= model_class.human_attribute_name(:gender) %></th>
-      <th><%= model_class.human_attribute_name(:membership_type) %></th>
-      <th><%= model_class.human_attribute_name(:head_count) %></th>
+      <% years.each do |year| %>
+        <th class="year"><%= year.name %></th>
+      <% end %>
     </tr>
   </thead>
   <tbody>
     <% @memberships.each do |membership| %>
       <tr>
         <td><%= link_to membership.organisation.name, organisation_path(membership.organisation) %></td>
-        <td><%= membership.year.name%></td>
-        <td><%= Membership::GENDERS[membership.gender] %></td>
-        <td><%= Membership::MEMBERSHIP_TYPES[membership.membership_type] %></td>
-        <td><%= membership.head_count %></td>
+        <% years.each do |year| %>
+          <td class="year"><%= membership.organisation.total_head_count_for_year(year) %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<%= link_to t('.new', :default => t("helpers.links.new")),
-            new_membership_path,
-            :class => 'btn btn-primary' %>
