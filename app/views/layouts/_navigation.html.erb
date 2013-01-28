@@ -1,5 +1,11 @@
 <span class="brand"><%= link_to "Data Tracker", root_path %> <%= "#{yield(:app_name)}" %></span>
-<ul class="nav">
+<% if user_signed_in? %>
+  <ul class="nav">
+    <li><%= link_to 'Membership', memberships_path %></li>
+  </ul>
+<% end %>
+
+<ul class="nav pull-right">
   <% if user_signed_in? %>
     <li>
     <%= link_to 'Logout', destroy_user_session_path, :method=>'delete' %>
