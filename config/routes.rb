@@ -9,7 +9,7 @@ DataTracker::Application.routes.draw do
 
 
   authenticated :user do
-    root :to => 'organisations#index'
+    root :to => 'memberships#index'
   end
   root :to => "home#index"
 

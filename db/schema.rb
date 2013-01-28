@@ -11,7 +11,20 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130128132202) do
+ActiveRecord::Schema.define(:version => 20130128134741) do
+
+  create_table "memberships", :force => true do |t|
+    t.integer  "organisation_id"
+    t.integer  "year_id"
+    t.string   "gender"
+    t.string   "membership_type"
+    t.integer  "head_count"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
+
+  add_index "memberships", ["organisation_id"], :name => "index_memberships_on_organisation_id"
+  add_index "memberships", ["year_id"], :name => "index_memberships_on_year_id"
 
   create_table "organisation_types", :force => true do |t|
     t.string   "name"
