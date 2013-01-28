@@ -1,4 +1,7 @@
 DataTracker::Application.routes.draw do
+  resources :memberships
+
+
   resources :years
 
 
