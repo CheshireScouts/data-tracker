@@ -34,6 +34,15 @@ Year.create(name: 2012)
 Year.create(name: 2013)
 puts 'Created Years'
 
+AwardType.delete_all
+AwardType.create(name: 'Chief Scout\'s Bronze Award')
+AwardType.create(name: 'Chief Scout\'s Silver Award')
+AwardType.create(name: 'Chief Scout\'s Gold Award')
+AwardType.create(name: 'Chief Scout\'s Diamond Award')
+AwardType.create(name: 'Chief Scout\'s Platinum Award')
+AwardType.create(name: 'Queen\'s Scout Award')
+puts 'Created Award Types'
+
 OrganisationType.delete_all
 county = OrganisationType.create(name: 'Scout County')
 district = OrganisationType.create(name: 'Scout District')

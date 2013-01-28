@@ -1,4 +1,10 @@
 DataTracker::Application.routes.draw do
+  resources :award_types
+
+
+  resources :awards
+
+
   resources :memberships
 
 

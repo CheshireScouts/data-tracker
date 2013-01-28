@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  organisation: 
+  year: 
+  award_type: 
+  award_count: 1
+
+two:
+  organisation: 
+  year: 
+  award_type: 
+  award_count: 1
