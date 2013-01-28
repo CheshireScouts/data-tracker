@@ -7,6 +7,6 @@ class Organisation < ActiveRecord::Base
   has_ancestry
 
   def total_head_count_for_year(year)
-  	Membership.sum(:head_count, :conditions => { :year_id => year })
+  	Membership.sum(:head_count, :conditions => { :organisation_id => self, :year_id => year })
   end  	
 end

@@ -1,5 +1,6 @@
 <%- model_class = Membership -%>
 <% years = Year.find(:all) %>
+<% organisations = Organisation.find(:all) %>
 <div class="page-header">
   <h1><%=t '.title', :default => model_class.model_name.human %></h1>
 </div>
@@ -8,16 +9,16 @@
     <tr>
       <th><%= model_class.human_attribute_name(:organisation_id) %></th>
       <% years.each do |year| %>
-        <th class="year"><%= year.name %></th>
+        <th><%= year.name %></th>
       <% end %>
     </tr>
   </thead>
   <tbody>
-    <% @memberships.each do |membership| %>
+    <% organisations.each do |organisation| %>
       <tr>
-        <td><%= link_to membership.organisation.name, organisation_path(membership.organisation) %></td>
+        <td><%= link_to organisation.name, organisation_path(organisation) %></td>
         <% years.each do |year| %>
-          <td class="year"><%= membership.organisation.total_head_count_for_year(year) %></td>
+          <td><%= organisation.total_head_count_for_year(year) %></td>
         <% end %>
       </tr>
     <% end %>
