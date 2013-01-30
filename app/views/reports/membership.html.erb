@@ -1,0 +1,27 @@
+<%- model_class = Membership -%>
+<% years = Year.find(:all) %>
+<% organisations = Organisation.find(:all) %>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human %></h1>
+</div>
+Still plenty of work to do here, but at least it is now cross tabbing the data
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:organisation_id) %></th>
+      <% years.each do |year| %>
+        <th><%= year.name %></th>
+      <% end %>
+    </tr>
+  </thead>
+  <tbody>
+    <% organisations.each do |organisation| %>
+      <tr>
+        <td><%= link_to organisation.name, organisation_path(organisation) %></td>
+        <% years.each do |year| %>
+          <td><%= organisation.total_head_count_for_year(year) %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

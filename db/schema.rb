@@ -41,13 +41,14 @@ ActiveRecord::Schema.define(:version => 20130130101857) do
   create_table "memberships", :force => true do |t|
     t.integer  "organisation_id"
     t.integer  "year_id"
+    t.integer  "membership_type_id"
     t.string   "gender"
-    t.string   "membership_type"
     t.integer  "head_count"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
   end
 
+  add_index "memberships", ["membership_type_id"], :name => "index_memberships_on_membership_type_id"
   add_index "memberships", ["organisation_id"], :name => "index_memberships_on_organisation_id"
   add_index "memberships", ["year_id"], :name => "index_memberships_on_year_id"
 

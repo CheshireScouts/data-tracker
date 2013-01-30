@@ -1,4 +1,8 @@
 DataTracker::Application.routes.draw do
+  get "reports/awards"
+
+  get "reports/membership"
+
   resources :membership_types
 
 

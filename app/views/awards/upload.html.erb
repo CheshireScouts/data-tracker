@@ -7,4 +7,6 @@
 <%= form_tag import_awards_path, multipart: true do %>
 	<%= file_field_tag :file %>
 	<%= submit_tag "Import", :class => 'btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+            awards_path, :class => 'btn' %>
 <% end %>

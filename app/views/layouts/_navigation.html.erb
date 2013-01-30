@@ -1,8 +1,8 @@
 <span class="brand"><%= link_to "Data Tracker", root_path %> <%= "#{yield(:app_name)}" %></span>
 <% if user_signed_in? %>
   <ul class="nav">
-    <li><%= link_to 'Membership', memberships_path %></li>
-    <li><%= link_to 'Awards', awards_path %></li>
+    <li><%= link_to 'Membership', '/reports/membership' %></li>
+    <li><%= link_to 'Awards', '/reports/awards' %></li>
   </ul>
 <% end %>
 
@@ -26,7 +26,9 @@
           <li><%= link_to 'Users', users_path %></li>
           <li><%= link_to 'Organisations', organisations_path %></li>
           <li><%= link_to 'Organisation Types', organisation_types_path %></li>
+          <li><%= link_to 'Membership Records', memberships_path %></li>
           <li><%= link_to 'Membership Types', membership_types_path %></li>
+          <li><%= link_to 'Award Records', awards_path %></li>
           <li><%= link_to 'Award Types', award_types_path %></li>
           <li><%= link_to 'Years', years_path %></li>
         </ul>
