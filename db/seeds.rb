@@ -43,6 +43,16 @@ AwardType.create(name: 'Chief Scout\'s Platinum Award')
 AwardType.create(name: 'Queen\'s Scout Award')
 puts 'Created Award Types'
 
+MembershipType.create!(name: 'Beavers')
+MembershipType.create!(name: 'Cubs')
+MembershipType.create!(name: 'Scouts')
+MembershipType.create!(name: 'Explorers')
+MembershipType.create!(name: 'Network')
+MembershipType.create!(name: 'Active Support')
+MembershipType.create!(name: 'Leaders')
+MembershipType.create!(name: 'Executive Committee')
+puts 'Created Membership Types'
+
 OrganisationType.delete_all
 county = OrganisationType.create(name: 'Scout County')
 district = OrganisationType.create(name: 'Scout District')
