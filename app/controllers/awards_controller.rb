@@ -81,4 +81,12 @@ class AwardsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def upload
+  end
+
+  def import
+    Award.import(params[:file])
+    redirect_to root_url, notice: "Awards Imported"
+  end
 end

@@ -5,7 +5,11 @@ DataTracker::Application.routes.draw do
   resources :award_types
 
 
-  resources :awards
+  resources :awards do
+    collection { post :import}
+    collection { get :upload}
+  end
+  root to: 'awards#index'
 
 
   resources :memberships
