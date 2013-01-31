@@ -6,3 +6,16 @@
 I've not written it yet, but this is where the Awards reporting will go.<br><br>
 The Awards records can now be found in the Admin menu.
 <hr>
+<% unless @issues.empty? %>
+	<h2>Open Reporting Tasks</h2>
+	<table class="table table-striped">
+		<thead>
+		</thead>
+		<tbody>
+			<% @issues.each do |i| %>
+				<tr>
+					<td><%= link_to i["title"], i["html_url"], :target => "_blank" %></td>
+				</tr>
+		</tbody>
+	<% end %>
+<% end %>

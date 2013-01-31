@@ -62,6 +62,9 @@ GEM
     figaro (0.5.3)
       rails (~> 3.0)
     hike (1.2.1)
+    httparty (0.10.2)
+      multi_json (~> 1.0)
+      multi_xml (>= 0.5.2)
     i18n (0.6.1)
     journey (1.0.4)
     jquery-rails (2.2.0)
@@ -88,6 +91,7 @@ GEM
       webrobots (~> 0.0, >= 0.0.9)
     mime-types (1.19)
     multi_json (1.5.0)
+    multi_xml (0.5.2)
     net-http-digest_auth (1.2.1)
     net-http-persistent (2.8)
     nokogiri (1.5.6)
@@ -175,6 +179,7 @@ DEPENDENCIES
   coffee-rails (~> 3.2.1)
   devise (>= 2.2.2)
   figaro (>= 0.5.3)
+  httparty
   jquery-rails
   less-rails (>= 2.2.6)
   libv8 (>= 3.11.8)
