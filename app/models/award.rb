@@ -10,9 +10,9 @@ class Award < ActiveRecord::Base
     unless file.nil?
       CSV.foreach(file.path, headers: true) do |row|
         record = row.to_hash
-        organisation = Organisation.find_by_registration_no!(record["organisation"])
-        year = Year.find_by_name!(record["year"])
-        award_type = AwardType.find_by_code!(record["award_type"])
+        organisation = Organisation.find_by_registration_no(record["organisation"])
+        year = Year.find_by_name(record["year"])
+        award_type = AwardType.find_by_code(record["award_type"])
         award_count = record["award_count"]
         Award.create(organisation: organisation, year: year, award_type: award_type, award_count: award_count)
       end

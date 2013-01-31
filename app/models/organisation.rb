@@ -14,8 +14,8 @@ class Organisation < ActiveRecord::Base
         record = row.to_hash
         reg = record["registration_no"]
         name = record["name"]
-        type = OrganisationType.find_by_code!(record["organisation_type"])
-        parent = Organisation.find_by_registration_no!(record["parent"])
+        type = OrganisationType.find_by_code(record["organisation_type"])
+        parent = Organisation.find_by_registration_no(record["parent"])
         Organisation.create!(registration_no: reg, name: name, organisation_type: type, parent: parent)
       end
     end
