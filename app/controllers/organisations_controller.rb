@@ -81,4 +81,12 @@ class OrganisationsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def upload
+  end
+
+  def import
+    Organisation.import(params[:file])
+    redirect_to organisations_url, notice: "Organisations Imported"
+  end
 end

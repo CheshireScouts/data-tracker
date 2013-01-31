@@ -1,0 +1,12 @@
+<%- model_class = Organisation -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => t('helpers.titles.new', :model => model_class.model_name.human,
+                                 :default => "#{model_class.model_name.human} Import") %></h1>
+</div>
+
+<%= form_tag import_organisations_path, multipart: true do %>
+	<%= file_field_tag :file %>
+	<%= submit_tag "Import", :class => 'btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+            organisations_path, :class => 'btn' %>
+<% end %>

@@ -1,4 +1,5 @@
 <%= simple_form_for @organisation_type, :html => { :class => 'form-horizontal' } do |f| %>
+  <%= f.input :code %>
   <%= f.input :name %>
   <div class="form-actions">
     <%= f.button :submit, :class => 'btn-primary' %>

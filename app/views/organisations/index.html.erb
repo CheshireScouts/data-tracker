@@ -2,9 +2,19 @@
 <div class="page-header">
   <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
 </div>
+
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_organisation_path,
+            :class => 'btn btn-primary' %>
+
+<%= link_to t('.upload', :default => t("helpers.links.upload")),
+upload_organisations_path,
+:class => 'btn btn-primary' %>
+
 <table class="table table-striped">
   <thead>
     <tr>
+      <th><%= model_class.human_attribute_name(:registration_no) %></th>
       <th><%= model_class.human_attribute_name(:name) %></th>
       <th><%= model_class.human_attribute_name(:organisation_type_id) %></th>
       <th><%= model_class.human_attribute_name(:parent_id) %></th>
@@ -14,6 +24,7 @@
   <tbody>
     <% @organisations.each do |organisation| %>
       <tr>
+        <td><%= link_to organisation.registration_no, organisation_path(organisation) %></td>
         <td><%= link_to organisation.name, organisation_path(organisation) %></td>
         <td><%= organisation.organisation_type.name %></td>
         <td><%= link_to organisation.parent.name, organisation_path(organisation.parent) if organisation.parent %></td>
@@ -30,7 +41,3 @@
     <% end %>
   </tbody>
 </table>
-
-<%= link_to t('.new', :default => t("helpers.links.new")),
-            new_organisation_path,
-            :class => 'btn btn-primary' %>

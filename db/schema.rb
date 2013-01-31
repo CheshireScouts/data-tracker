@@ -14,10 +14,13 @@
 ActiveRecord::Schema.define(:version => 20130130101857) do
 
   create_table "award_types", :force => true do |t|
+    t.string   "code"
     t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  add_index "award_types", ["code"], :name => "index_award_types_on_code", :unique => true
 
   create_table "awards", :force => true do |t|
     t.integer  "organisation_id"
@@ -33,10 +36,13 @@ ActiveRecord::Schema.define(:version => 20130130101857) do
   add_index "awards", ["year_id"], :name => "index_awards_on_year_id"
 
   create_table "membership_types", :force => true do |t|
+    t.string   "code"
     t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  add_index "membership_types", ["code"], :name => "index_membership_types_on_code", :unique => true
 
   create_table "memberships", :force => true do |t|
     t.integer  "organisation_id"
@@ -53,12 +59,16 @@ ActiveRecord::Schema.define(:version => 20130130101857) do
   add_index "memberships", ["year_id"], :name => "index_memberships_on_year_id"
 
   create_table "organisation_types", :force => true do |t|
+    t.string   "code"
     t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
 
+  add_index "organisation_types", ["code"], :name => "index_organisation_types_on_code", :unique => true
+
   create_table "organisations", :force => true do |t|
+    t.string   "registration_no"
     t.string   "name"
     t.integer  "organisation_type_id"
     t.datetime "created_at",           :null => false
@@ -68,6 +78,7 @@ ActiveRecord::Schema.define(:version => 20130130101857) do
 
   add_index "organisations", ["ancestry"], :name => "index_organisations_on_ancestry"
   add_index "organisations", ["organisation_type_id"], :name => "index_organisations_on_organisation_type_id"
+  add_index "organisations", ["registration_no"], :name => "index_organisations_on_registration_no", :unique => true
 
   create_table "roles", :force => true do |t|
     t.string   "name"

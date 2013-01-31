@@ -87,6 +87,6 @@ class AwardsController < ApplicationController
 
   def import
     Award.import(params[:file])
-    redirect_to root_url, notice: "Awards Imported"
+    redirect_to awards_url, notice: "Awards Imported"
   end
 end

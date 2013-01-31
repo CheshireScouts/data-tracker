@@ -23,7 +23,12 @@ DataTracker::Application.routes.draw do
   resources :years
 
 
-  resources :organisation_types, :organisations
+  resources :organisation_types
+
+  resources :organisations do
+    collection { post :import}
+    collection { get :upload}
+  end
 
   devise_for :users, :skip => [:registrations] 
   as :user do

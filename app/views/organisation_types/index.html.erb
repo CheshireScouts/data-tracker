@@ -5,6 +5,7 @@
 <table class="table table-striped">
   <thead>
     <tr>
+      <th><%= model_class.human_attribute_name(:code) %></th>
       <th><%= model_class.human_attribute_name(:name) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
@@ -12,6 +13,7 @@
   <tbody>
     <% @organisation_types.each do |organisation_type| %>
       <tr>
+        <td><%= link_to organisation_type.code, organisation_type_path(organisation_type) %></td>
         <td><%= link_to organisation_type.name, organisation_type_path(organisation_type) %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),

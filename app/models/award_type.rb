@@ -1,3 +1,3 @@
 class AwardType < ActiveRecord::Base
-  attr_accessible :name
+  attr_accessible :code, :name
 end
