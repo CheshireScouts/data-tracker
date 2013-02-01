@@ -1,7 +1,8 @@
 <%= simple_form_for @membership, :html => { :class => 'form-horizontal' } do |f| %>
   <%= f.association :organisation, collection: Organisation.all(order: 'name'), value_method: :id, label_method: :name, include_blank: false %>
   <%= f.association :year, collection: Year.all(order: 'name'), value_method: :id, label_method: :name, include_blank: false %>
-  <%= f.association :membership_type, collection: MembershipType.all(order: 'name'), value_method: :id, label_method: :name, include_blank: false %> 
+  <%= f.association :scout_type, collection: ScoutType.all(order: 'name'), value_method: :id, label_method: :name, include_blank: false %>
+  <%= f.association :membership_type, collection: MembershipType.all(order: 'name'), value_method: :id, label_method: :name, include_blank: false %>
   <%= f.collection_radio_buttons :gender, Membership::GENDERS, :first, :last %>
   <%= f.input :head_count %>
   <div class="form-actions">

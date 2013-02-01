@@ -43,15 +43,21 @@ AwardType.create(code: 'PLATINUM', name: 'Chief Scout\'s Platinum Award')
 AwardType.create(code: 'QUEEN', name: 'Queen\'s Scout Award')
 puts 'Created Award Types'
 
+ScoutType.delete_all
+ScoutType.create!(code: 'BEAVERS', name: 'Beaver Scouts')
+ScoutType.create!(code: 'CUBS', name: 'Cub Scouts')
+ScoutType.create!(code: 'SCOUTS', name: 'Scouts')
+ScoutType.create!(code: 'EXPLORERS', name: 'Explorer Scouts')
+ScoutType.create!(code: 'NETWORK', name: 'Network Scouts')
+ScoutType.create!(code: 'SUPPORT', name: 'Active Support')
+ScoutType.create!(code: 'LEADERS', name: 'Scout Leaders')
+ScoutType.create!(code: 'ASSISTANT', name: 'Sectional Assistants and Skills Instructors')
+ScoutType.create!(code: 'OTHER', name: 'Other Adults')
+puts 'Created Scout Types'
+
 MembershipType.delete_all
-MembershipType.create!(code: 'BEAVERS', name: 'Beaver Scouts')
-MembershipType.create!(code: 'CUBS', name: 'Cub Scouts')
-MembershipType.create!(code: 'SCOUTS', name: 'Scouts')
-MembershipType.create!(code: 'EXPLORERS', name: 'Explorer Scouts')
-MembershipType.create!(code: 'NETWORK', name: 'Network Scouts')
-MembershipType.create!(code: 'SUPPORT', name: 'Active Support')
-MembershipType.create!(code: 'LEADERS', name: 'Scout Leaders')
-MembershipType.create!(code: 'EXEC', name: 'Executive Committee Members')
+MembershipType.create!(code: 'M', name: 'Member')
+MembershipType.create!(code: 'A', name: 'Associate Member')
 puts 'Created Membership Types'
 
 OrganisationType.delete_all

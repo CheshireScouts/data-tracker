@@ -1,4 +1,7 @@
 DataTracker::Application.routes.draw do
+  resources :scout_types
+
+
   get "reports/awards"
 
   get "reports/membership"

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130130101857) do
+ActiveRecord::Schema.define(:version => 20130201115203) do
 
   create_table "award_types", :force => true do |t|
     t.string   "code"
@@ -48,6 +48,7 @@ ActiveRecord::Schema.define(:version => 20130130101857) do
     t.integer  "organisation_id"
     t.integer  "year_id"
     t.integer  "membership_type_id"
+    t.integer  "scout_type_id"
     t.string   "gender"
     t.integer  "head_count"
     t.datetime "created_at",         :null => false
@@ -56,6 +57,7 @@ ActiveRecord::Schema.define(:version => 20130130101857) do
 
   add_index "memberships", ["membership_type_id"], :name => "index_memberships_on_membership_type_id"
   add_index "memberships", ["organisation_id"], :name => "index_memberships_on_organisation_id"
+  add_index "memberships", ["scout_type_id"], :name => "index_memberships_on_scout_type_id"
   add_index "memberships", ["year_id"], :name => "index_memberships_on_year_id"
 
   create_table "organisation_types", :force => true do |t|
@@ -90,6 +92,13 @@ ActiveRecord::Schema.define(:version => 20130130101857) do
 
   add_index "roles", ["name", "resource_type", "resource_id"], :name => "index_roles_on_name_and_resource_type_and_resource_id"
   add_index "roles", ["name"], :name => "index_roles_on_name"
+
+  create_table "scout_types", :force => true do |t|
+    t.string   "code"
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false

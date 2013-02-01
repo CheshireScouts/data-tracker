@@ -4,6 +4,7 @@ class CreateMemberships < ActiveRecord::Migration
       t.references :organisation
       t.references :year
       t.references :membership_type
+      t.references :scout_type
       t.string :gender
       t.integer :head_count
       t.timestamps
@@ -11,5 +12,6 @@ class CreateMemberships < ActiveRecord::Migration
     add_index :memberships, :organisation_id
     add_index :memberships, :year_id
     add_index :memberships, :membership_type_id
+    add_index :memberships, :scout_type_id
   end
 end

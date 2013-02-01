@@ -15,6 +15,7 @@
     <tr>
       <th><%= model_class.human_attribute_name(:organisation_id) %></th>
       <th><%= model_class.human_attribute_name(:year_id) %></th>
+      <th><%= model_class.human_attribute_name(:scout_type_id) %></th>
       <th><%= model_class.human_attribute_name(:membership_type_id) %></th>
       <th><%= model_class.human_attribute_name(:gender) %></th>
       <th><%= model_class.human_attribute_name(:head_count) %></th>
@@ -25,6 +26,7 @@
       <tr>
         <td><%= link_to membership.organisation.name, organisation_path(membership.organisation) %></td>
         <td><%= membership.year.name %></td>
+        <td><%= membership.scout_type.name %></td>
         <td><%= membership.membership_type.name %></td>
         <td><%= membership.gender_text %></td>
         <td><%= membership.head_count %></td>
