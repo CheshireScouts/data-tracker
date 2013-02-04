@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130201115203) do
+ActiveRecord::Schema.define(:version => 20130201163527) do
 
   create_table "award_types", :force => true do |t|
     t.string   "code"
@@ -34,6 +34,27 @@ ActiveRecord::Schema.define(:version => 20130201115203) do
   add_index "awards", ["award_type_id"], :name => "index_awards_on_award_type_id"
   add_index "awards", ["organisation_id"], :name => "index_awards_on_organisation_id"
   add_index "awards", ["year_id"], :name => "index_awards_on_year_id"
+
+  create_table "census_formats", :force => true do |t|
+    t.string   "name"
+    t.string   "table_xpath"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "census_table_formats", :force => true do |t|
+    t.integer  "census_format_id"
+    t.integer  "scout_type_id"
+    t.integer  "membership_type_id"
+    t.integer  "row"
+    t.integer  "column"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+  end
+
+  add_index "census_table_formats", ["census_format_id"], :name => "index_census_table_formats_on_census_format_id"
+  add_index "census_table_formats", ["membership_type_id"], :name => "index_census_table_formats_on_membership_type_id"
+  add_index "census_table_formats", ["scout_type_id"], :name => "index_census_table_formats_on_scout_type_id"
 
   create_table "membership_types", :force => true do |t|
     t.string   "code"
@@ -128,8 +149,9 @@ ActiveRecord::Schema.define(:version => 20130201115203) do
 
   create_table "years", :force => true do |t|
     t.integer  "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.integer  "census_format_id"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
   end
 
 end

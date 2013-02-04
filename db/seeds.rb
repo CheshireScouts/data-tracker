@@ -17,23 +17,6 @@ user = User.find_or_create_by_email :name => ENV['ADMIN_NAME'].dup, :email => EN
 puts 'user: ' << user.name
 user.add_role :admin
 
-Year.delete_all
-Year.create(name: 2000)
-Year.create(name: 2001)
-Year.create(name: 2002)
-Year.create(name: 2003)
-Year.create(name: 2004)
-Year.create(name: 2005)
-Year.create(name: 2006)
-Year.create(name: 2007)
-Year.create(name: 2008)
-Year.create(name: 2009)
-Year.create(name: 2010)
-Year.create(name: 2011)
-Year.create(name: 2012)
-Year.create(name: 2013)
-puts 'Created Years'
-
 AwardType.delete_all
 AwardType.create(code: 'BRONZE', name: 'Chief Scout\'s Bronze Award')
 AwardType.create(code: 'SILVER', name: 'Chief Scout\'s Silver Award')
@@ -44,20 +27,20 @@ AwardType.create(code: 'QUEEN', name: 'Queen\'s Scout Award')
 puts 'Created Award Types'
 
 ScoutType.delete_all
-ScoutType.create!(code: 'BEAVERS', name: 'Beaver Scouts')
-ScoutType.create!(code: 'CUBS', name: 'Cub Scouts')
-ScoutType.create!(code: 'SCOUTS', name: 'Scouts')
-ScoutType.create!(code: 'EXPLORERS', name: 'Explorer Scouts')
-ScoutType.create!(code: 'NETWORK', name: 'Network Scouts')
-ScoutType.create!(code: 'SUPPORT', name: 'Active Support')
-ScoutType.create!(code: 'LEADERS', name: 'Scout Leaders')
-ScoutType.create!(code: 'ASSISTANT', name: 'Sectional Assistants and Skills Instructors')
-ScoutType.create!(code: 'OTHER', name: 'Other Adults')
+beavers = ScoutType.create!(code: 'BEAVERS', name: 'Beaver Scouts')
+cubs = ScoutType.create!(code: 'CUBS', name: 'Cub Scouts')
+scouts = ScoutType.create!(code: 'SCOUTS', name: 'Scouts')
+explorers = ScoutType.create!(code: 'EXPLORERS', name: 'Explorer Scouts')
+network = ScoutType.create!(code: 'NETWORK', name: 'Network Scouts')
+support = ScoutType.create!(code: 'SUPPORT', name: 'Active Support')
+leaders = ScoutType.create!(code: 'LEADERS', name: 'Leaders')
+assistant = ScoutType.create!(code: 'ASSISTANT', name: 'Sectional Assistants and Skills Instructors')
+other = ScoutType.create!(code: 'OTHER', name: 'Other Adults')
 puts 'Created Scout Types'
 
 MembershipType.delete_all
-MembershipType.create!(code: 'M', name: 'Member')
-MembershipType.create!(code: 'A', name: 'Associate Member')
+member = MembershipType.create!(code: 'M', name: 'Member')
+associate = MembershipType.create!(code: 'A', name: 'Associate Member')
 puts 'Created Membership Types'
 
 OrganisationType.delete_all
@@ -68,6 +51,38 @@ explorers = OrganisationType.create(code: 'ESU', name: 'Explorer Scout Unit')
 network = OrganisationType.create(code: 'NETWORK', name: 'Network Unit')
 asu = OrganisationType.create(code: 'ASU', name: 'Active Support Unit')
 puts 'Created Organisation Types'
+
+CensusFormat.delete_all
+group_format_2005 = CensusFormat.create(name: '2005 Group Format', table_xpath: '/html/body/table/tr[3]/td[1]/table/')
+puts 'Created Census Formats'
+
+CensusTableFormat.delete_all
+CensusTableFormat.create(census_format: group_format_2005, scout_type: beavers, membership_type: member, row: 5, column: 8)
+CensusTableFormat.create(census_format: group_format_2005, scout_type: cubs, membership_type: member, row: 7, column: 8)
+CensusTableFormat.create(census_format: group_format_2005, scout_type: scouts, membership_type: member, row: 9, column: 9)
+CensusTableFormat.create(census_format: group_format_2005, scout_type: leaders, membership_type: member, row: 11, column: 9)
+CensusTableFormat.create(census_format: group_format_2005, scout_type: assistant, membership_type: member, row: 13, column: 8)
+CensusTableFormat.create(census_format: group_format_2005, scout_type: support, membership_type: member, row: 15, column: 4)
+CensusTableFormat.create(census_format: group_format_2005, scout_type: other, membership_type: member, row: 18, column: 4)
+CensusTableFormat.create(census_format: group_format_2005, scout_type: support, membership_type: associate, row: 16, column: 3)
+CensusTableFormat.create(census_format: group_format_2005, scout_type: other, membership_type: associate, row: 19, column: 3)
+puts 'Created Census Table Formats'
+
+Year.delete_all
+Year.create(name: 2001)
+Year.create(name: 2002)
+Year.create(name: 2003)
+Year.create(name: 2004)
+Year.create(name: 2005, census_format: group_format_2005)
+Year.create(name: 2006, census_format: group_format_2005)
+Year.create(name: 2007, census_format: group_format_2005)
+Year.create(name: 2008, census_format: group_format_2005)
+Year.create(name: 2009, census_format: group_format_2005)
+Year.create(name: 2010, census_format: group_format_2005)
+Year.create(name: 2011, census_format: group_format_2005)
+Year.create(name: 2012, census_format: group_format_2005)
+Year.create(name: 2013, census_format: group_format_2005)
+puts 'Created Years'
 
 Organisation.delete_all
 Organisation.create(registration_no: '00108', name: 'Cheshire Scouts', organisation_type: county)

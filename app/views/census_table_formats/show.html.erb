@@ -1,0 +1,29 @@
+<%- model_class = CensusTableFormat -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human %></h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:census_format_id) %>:</strong></dt>
+  <dd><%= @census_table_format.census_format.name %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:scout_type_id) %>:</strong></dt>
+  <dd><%= @census_table_format.scout_type.name %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:membership_type_id) %>:</strong></dt>
+  <dd><%= @census_table_format.membership_type.name %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:row) %>:</strong></dt>
+  <dd><%= @census_table_format.row %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:column) %>:</strong></dt>
+  <dd><%= @census_table_format.column %></dd>
+</dl>
+
+<div class="form-actions">
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              census_table_formats_path, :class => 'btn'  %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_census_table_format_path(@census_table_format), :class => 'btn' %>
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              census_table_format_path(@census_table_format),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>
+</div>

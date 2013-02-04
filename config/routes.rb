@@ -1,4 +1,10 @@
 DataTracker::Application.routes.draw do
+  resources :census_table_formats
+
+
+  resources :census_formats
+
+
   resources :scout_types
 
 

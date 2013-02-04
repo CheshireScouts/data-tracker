@@ -3,8 +3,8 @@ namespace :import do
   task :census => :environment do |t, args|
 
 
-    census = Census.new("2013")
-    puts census.get_membership_for_unit("beavers")
+    census = CensusImporter.new
+    census.create_memberships_for_all_groups("2013")
 
   end
 end
