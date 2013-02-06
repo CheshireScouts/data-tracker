@@ -1,0 +1,56 @@
+<div class="subnav">
+    <ul class="nav nav-pills">
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+          Filter Fields
+          <b class="caret"></b>
+        </a>
+        <ul class="dropdown-menu stop-propagation" style="overflow:auto;max-height:450px;padding:10px;">
+          <div id="filter-list"></div>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+          Row Label Fields
+          <b class="caret"></b>
+        </a>
+        <ul class="dropdown-menu stop-propagation" style="overflow:auto;max-height:450px;padding:10px;">
+          <div id="row-label-fields"></div>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+          Column Label Fields
+          <b class="caret"></b>
+        </a>
+        <ul class="dropdown-menu stop-propagation" style="overflow:auto;max-height:450px;padding:10px;">
+          <div id="column-label-fields"></div>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+          Summary Fields
+          <b class="caret"></b>
+        </a>
+        <ul class="dropdown-menu stop-propagation" style="overflow:auto;max-height:450px;padding:10px;">
+          <div id="summary-fields"></div>
+        </ul>
+      </li>
+      <li class="dropdown pull-right">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+          Canned Reports
+          <b class="caret"></b>
+        </a>
+        <ul class="dropdown-menu">
+        </ul>
+      </li>
+    </ul>
+  </div>
+  <hr/>
+
+  <h1>Results</h1>
+  <span id="pivot-detail"></span>
+
+  <hr/>
+  <div id="results" data-url="<%= memberships_url(format: 'csv') %>"></div>
+</div>

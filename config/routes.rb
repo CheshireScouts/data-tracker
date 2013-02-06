@@ -1,43 +1,24 @@
 DataTracker::Application.routes.draw do
   resources :census_table_formats
-
-
   resources :census_formats
-
-
   resources :scout_types
-
-
-  get "reports/awards"
-
-  get "reports/membership"
-
-  resources :reports
-
   resources :membership_types
-
-
   resources :award_types
-
+  resources :memberships
+  resources :years
+  resources :organisation_types
 
   resources :awards do
     collection { post :import}
     collection { get :upload}
   end
 
-
-  resources :memberships
-
-
-  resources :years
-
-
-  resources :organisation_types
-
   resources :organisations do
     collection { post :import}
     collection { get :upload}
   end
+
+  match '/reports/:action' => 'reports#:action'
 
   devise_for :users, :skip => [:registrations] 
   as :user do
@@ -47,7 +28,7 @@ DataTracker::Application.routes.draw do
   resources :users
 
   authenticated :user do
-    root :to => 'reports#membership'
+    root :to => 'reports#pivot'
   end
   root :to => "home#index"
 end

@@ -13,4 +13,10 @@
 //= require jquery
 //= require jquery_ujs
 //= require twitter/bootstrap
+//= require subnav
+//= require accounting.min
+//= require jquery.dataTables.min
+//= require dataTables.bootstrap
+//= require pivot.js
+//= require jquery_pivot.js
 //= require_tree .

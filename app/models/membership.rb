@@ -1,4 +1,6 @@
 class Membership < ActiveRecord::Base
+  require 'csv'
+  
   GENDERS = {'M' => 'Male', 'F' => 'Female'}
   belongs_to :organisation
   belongs_to :year
@@ -8,5 +10,14 @@ class Membership < ActiveRecord::Base
 
   def gender_text
   	GENDERS[gender]
+  end
+
+  def self.generate_csv
+    CSV.generate do |csv|
+      csv << ["membership_type", "year", "scout_type", "gender", "head_count"]
+      all.each do |m|
+        csv << [m.membership_type.name, m.year.name, m.scout_type.name, m.gender, m.head_count.to_s]
+      end
+    end
   end
 end

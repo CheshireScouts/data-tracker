@@ -5,7 +5,8 @@ group :assets do
   gem 'coffee-rails', '~> 3.2.1'
   gem 'uglifier', '>= 1.0.3'
 end
-gem 'jquery-rails'
+
+gem 'jquery-rails', '= 2.0.2'
 gem "thin", ">= 1.5.0"
 gem "pg", ">= 0.14.1"
 gem "less-rails", ">= 2.2.6", :group => :assets
@@ -23,4 +24,4 @@ gem "binding_of_caller", ">= 0.6.8", :group => :development
 gem "ancestry"
 gem "nokogiri"
 gem "mechanize"
-gem "httparty"
+gem "rabl"
