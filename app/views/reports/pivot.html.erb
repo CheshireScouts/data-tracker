@@ -1,4 +1,4 @@
-<div class="subnav">
+<div id="headers" class="subnav">
     <ul class="nav nav-pills">
       <li class="dropdown">
         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
@@ -36,21 +36,11 @@
           <div id="summary-fields"></div>
         </ul>
       </li>
-      <li class="dropdown pull-right">
-        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-          Canned Reports
-          <b class="caret"></b>
-        </a>
-        <ul class="dropdown-menu">
-        </ul>
-      </li>
     </ul>
+    <hr/>
   </div>
-  <hr/>
 
-  <h1>Results</h1>
-  <span id="pivot-detail"></span>
+  <div id="loading"><p>Loading Report. Please Wait.........</p></div>
 
-  <hr/>
   <div id="results" data-url="<%= memberships_url(format: 'csv') %>"></div>
 </div>

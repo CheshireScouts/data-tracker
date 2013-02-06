@@ -10,29 +10,35 @@ var fields = [
     
 ]
 
-  function setupPivot(input){
-    input.callbacks = {afterUpdateResults: function(){
-      $('#results > table').dataTable({
-        "sDom": "<'row'<'span6'l><'span6'f>>t<'row'<'span6'i><'span6'p>>",
-        "iDisplayLength": 50,
-        "aLengthMenu": [[25, 50, 100, -1], [25, 50, 100, "All"]],
-        "sPaginationType": "bootstrap",
-        "oLanguage": {
-          "sLengthMenu": "_MENU_ records per page"
-        }
-      });
-    }};
-    $('#pivot-demo').pivot_display('setup', input);
-  };
-
-  $(document).ready(function() {
-
-    setupPivot({url: $('#results').data('url'), fields: fields, filters: {}, rowLabels:["scout_type", "gender"], columnLabels:["year"],summaries:["head_count"]})
-
-    // prevent dropdown from closing after selection
-    $('.stop-propagation').click(function(event){
-      event.stopPropagation();
-    });
-
-    
+function setupPivot(input){
+input.callbacks = {afterUpdateResults: function(){
+  $('#results > table').dataTable({
+    "sDom": "<'row'<'span6'l><'span6'f>>t<'row'<'span6'i><'span6'p>>",
+    "iDisplayLength": 50,
+    "aLengthMenu": [[25, 50, 100, -1], [25, 50, 100, "All"]],
+    "sPaginationType": "bootstrap",
+    "oLanguage": {
+      "sLengthMenu": "_MENU_ records per page"
+    }
   });
+}};
+$('#pivot-demo').pivot_display('setup', input);
+};
+
+$(document).ready(function() {
+setupPivot({url: $('#results').data('url'), fields: fields, filters: {}, rowLabels:["scout_type", "gender"], columnLabels:["year"],summaries:["head_count"]})
+// prevent dropdown from closing after selection
+  $('.stop-propagation').click(function(event){
+    event.stopPropagation();
+  });
+});
+
+$(document).ajaxStart(function() {
+  $("#loading").show();
+  $("#headers").hide()
+});
+
+$(document).ajaxStop(function() {
+  $("#loading" ).hide();
+  $("#headers").show()
+});

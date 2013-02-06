@@ -1,5 +1,15 @@
 class OrganisationsController < ApplicationController
   load_and_authorize_resource
+
+  before_filter :collection_for_parent_select, :except => [:index, :show]
+
+  def collection_for_parent_select
+    @organisations = ancestry_options(Organisation.unscoped.arrange(:order => 'name')) {|i| "#{'-' * i.depth} #{i.name}" }
+  end
+
+
+
+
   # GET /organisations
   # GET /organisations.json
   def index
@@ -89,4 +99,16 @@ class OrganisationsController < ApplicationController
     Organisation.import(params[:file])
     redirect_to organisations_url, notice: "Organisations Imported"
   end
+
+  private
+
+    def ancestry_options(items)
+      result = []
+      items.map do |item, sub_items|
+        result << [yield(item), item.id]
+        #this is a recursive call:
+        result += ancestry_options(sub_items) {|i| "#{'-' * i.depth} #{i.name}" }
+      end
+      result
+    end
 end
