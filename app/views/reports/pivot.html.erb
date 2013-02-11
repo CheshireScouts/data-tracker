@@ -1,12 +1,4 @@
-<div id="breadcrumbs">
-  <h4>
-    <% @organisation.ancestors.each do |o| %>
-      <%= link_to o.name, pivot_report_path(o.id) %> &gt;
-    <% end %>
-    <%= link_to @organisation.name, pivot_report_path(@organisation.id) %>
-  </h4>
-  <hr/>
-</div>
+<%= render 'breadcrumbs' %>
 
 <div id="headers" class="subnav">
   <ul class="nav nav-pills">

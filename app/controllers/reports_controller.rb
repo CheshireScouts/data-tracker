@@ -4,6 +4,11 @@ class ReportsController < ApplicationController
   def membership
   end
 
+  def index
+    @organisation = Organisation.all.first
+    @organisations = Organisation.children_of(@organisation)
+  end
+
   def pivot
     @organisation = Organisation.find_by_id(params[:organisation_id]) || Organisation.all.first
     @organisations = Organisation.children_of(@organisation)

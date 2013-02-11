@@ -29,7 +29,7 @@ DataTracker::Application.routes.draw do
   resources :users
 
   authenticated :user do
-    root :to => 'reports#pivot'
+    root :to => 'reports#index'
   end
   root :to => "home#index"
 end
