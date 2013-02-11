@@ -24,4 +24,3 @@ gem "binding_of_caller", ">= 0.6.8", :group => :development
 gem "ancestry"
 gem "nokogiri"
 gem "mechanize"
-gem "rabl"

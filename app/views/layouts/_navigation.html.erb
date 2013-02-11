@@ -1,39 +1,54 @@
-<span class="brand"><%= link_to "Data Tracker", root_path %> <%= "#{yield(:app_name)}" %></span>
-<% if user_signed_in? %>
-  <ul class="nav">
-    <% if current_user.has_role? :admin %>
-      <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Admin<b class="caret"></b></a>
-        <ul class="dropdown-menu">
-          <li><%= link_to 'Users', users_path %></li>
-          <li><%= link_to 'Organisations', organisations_path %></li>
-          <li><%= link_to 'Organisation Types', organisation_types_path %></li>
-          <li><%= link_to 'Membership Records', memberships_path %></li>
-          <li><%= link_to 'Scout Types', scout_types_path %></li>
-          <li><%= link_to 'Membership Types', membership_types_path %></li>
-          <li><%= link_to 'Award Records', awards_path %></li>
-          <li><%= link_to 'Award Types', award_types_path %></li>
-          <li><%= link_to 'Years', years_path %></li>
-          <li><%= link_to 'Census Formats', census_formats_path %></li>
-          <li><%= link_to 'Census Table Formats', census_table_formats_path %></li>
-        </ul>
-      </li>
-    <% end %>
-  </ul>
-<% end %>
+    <div class="navbar navbar-fixed-top">  
+      <div class="navbar-inner">  
+        <div class="container">  
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".collapse">  
+            <span class="icon-bar"></span>  
+            <span class="icon-bar"></span>  
+            <span class="icon-bar"></span>  
+          </a>  
+          <div class="nav-collapse">
 
-<ul class="nav pull-right">
-  <% if user_signed_in? %>
-    <li>
-    <%= link_to 'Logout', destroy_user_session_path, :method=>'delete' %>
-    </li>
-  <% else %>
-    <li>
-    <%= link_to 'Login', new_user_session_path %>
-    </li>
-  <% end %>
-  <% if user_signed_in? %>
-    <li>
-    <%= link_to 'My Account', edit_user_registration_path %>
-    </li>
-  <% end %>
-</ul>
+            <span class="brand"><%= link_to "Data Tracker", root_path %> <%= "#{yield(:app_name)}" %></span>
+            <% if user_signed_in? %>
+              <ul class="nav">
+                <% if current_user.has_role? :admin %>
+                  <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Admin<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                      <li><%= link_to 'Users', users_path %></li>
+                      <li><%= link_to 'Organisations', organisations_path %></li>
+                      <li><%= link_to 'Organisation Types', organisation_types_path %></li>
+                      <li><%= link_to 'Membership Records', memberships_path %></li>
+                      <li><%= link_to 'Scout Types', scout_types_path %></li>
+                      <li><%= link_to 'Membership Types', membership_types_path %></li>
+                      <li><%= link_to 'Award Records', awards_path %></li>
+                      <li><%= link_to 'Award Types', award_types_path %></li>
+                      <li><%= link_to 'Years', years_path %></li>
+                      <li><%= link_to 'Census Formats', census_formats_path %></li>
+                      <li><%= link_to 'Census Table Formats', census_table_formats_path %></li>
+                    </ul>
+                  </li>
+                <% end %>
+              </ul>
+            <% end %>
+
+            <ul class="nav pull-right">
+              <% if user_signed_in? %>
+                <li>
+                <%= link_to 'Logout', destroy_user_session_path, :method=>'delete' %>
+                </li>
+              <% else %>
+                <li>
+                <%= link_to 'Login', new_user_session_path %>
+                </li>
+              <% end %>
+              <% if user_signed_in? %>
+                <li>
+                <%= link_to 'My Account', edit_user_registration_path %>
+                </li>
+              <% end %>
+            </ul>
+
+          </div>  
+        </div>  
+      </div>  
+    </div>  

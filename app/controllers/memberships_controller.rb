@@ -9,7 +9,6 @@ class MembershipsController < ApplicationController
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @memberships }
-      format.csv { render text: Membership.generate_csv }
     end
   end
 
@@ -83,7 +82,5 @@ class MembershipsController < ApplicationController
       format.json { head :no_content }
     end
   end
-
-  private
 
 end

@@ -12,16 +12,6 @@ class Membership < ActiveRecord::Base
   	GENDERS[gender]
   end
 
-  def self.generate_csv(organisation = Organisation.find_by_registration_no("00108"))
-    organisations = Organisation.subtree_of(organisation)
-    CSV.generate do |csv|
-      csv << ["membership_type", "year", "scout_type", "gender", "head_count"]
-      organisations.each do |o|
-        o.memberships.each do |m|
-          csv << [m.membership_type.name, m.year.name, m.scout_type.name, m.gender, m.head_count.to_s]
-        end
-      end
-    end
-  end
+  
   
 end

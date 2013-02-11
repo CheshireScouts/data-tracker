@@ -18,6 +18,7 @@ DataTracker::Application.routes.draw do
     collection { get :upload}
   end
 
+  match '/reports/:action/:organisation_id' => 'reports#:action'
   match '/reports/:action' => 'reports#:action'
 
   devise_for :users, :skip => [:registrations] 
