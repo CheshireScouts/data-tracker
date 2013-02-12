@@ -1,6 +1,6 @@
 module ReportsHelper
-  def pivot_report_path(organisation_id)
-    "/reports/pivot/#{organisation_id}"
+  def membership_report_path(organisation_id)
+    "/reports/membership/#{organisation_id}"
   end
 
   def membership_dataset_path(organisation_id)

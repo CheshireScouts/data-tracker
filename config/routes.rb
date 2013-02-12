@@ -28,8 +28,5 @@ DataTracker::Application.routes.draw do
   end
   resources :users
 
-  authenticated :user do
-    root :to => 'reports#index'
-  end
   root :to => "home#index"
 end

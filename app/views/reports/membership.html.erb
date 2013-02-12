@@ -1,30 +1,47 @@
-<%- model_class = Membership -%>
-<% years = Year.find(:all) %>
-<% organisations = Organisation.find(:all) %>
-<div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human %></h1>
+<%= render 'breadcrumbs' %>
+
+<div id="headers" class="subnav">
+  <ul class="nav nav-pills">
+    <li class="dropdown">
+      <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+        Filter Fields
+        <b class="caret"></b>
+      </a>
+      <ul class="dropdown-menu stop-propagation" style="overflow:auto;max-height:450px;padding:10px;">
+        <div id="filter-list"></div>
+      </ul>
+    </li>
+    <li class="dropdown">
+      <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+        Row Label Fields
+        <b class="caret"></b>
+      </a>
+      <ul class="dropdown-menu stop-propagation" style="overflow:auto;max-height:450px;padding:10px;">
+        <div id="row-label-fields"></div>
+      </ul>
+    </li>
+    <li class="dropdown">
+      <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+        Column Label Fields
+        <b class="caret"></b>
+      </a>
+      <ul class="dropdown-menu stop-propagation" style="overflow:auto;max-height:450px;padding:10px;">
+        <div id="column-label-fields"></div>
+      </ul>
+    </li>
+    <li class="dropdown">
+      <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+        Summary Fields
+        <b class="caret"></b>
+      </a>
+      <ul class="dropdown-menu stop-propagation" style="overflow:auto;max-height:450px;padding:10px;">
+        <div id="summary-fields"></div>
+      </ul>
+    </li>
+  </ul>
+  <hr/>
 </div>
-<hr>
-Still plenty of work to do here, but at least it is now cross tabbing the data<br><br>
-The Membership records can now be found in the Admin menu.
-<hr>
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th><%= model_class.human_attribute_name(:organisation_id) %></th>
-      <% years.each do |year| %>
-        <th><%= year.name %></th>
-      <% end %>
-    </tr>
-  </thead>
-  <tbody>
-    <% organisations.each do |organisation| %>
-      <tr>
-        <td><%= link_to organisation.name, organisation_path(organisation) %></td>
-        <% years.each do |year| %>
-          <td><%= organisation.total_head_count_for_year(year) %></td>
-        <% end %>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+
+<div id="loading">Loading Report for <%= @organisation.name %> Please Wait.........</div>
+
+<div id="results" data-url="<%= membership_dataset_path(@organisation.id) %>"></div>

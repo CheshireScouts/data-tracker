@@ -9,7 +9,7 @@ class ReportsController < ApplicationController
     @organisations = Organisation.children_of(@organisation)
   end
 
-  def pivot
+  def membership
     @organisation = Organisation.find_by_id(params[:organisation_id]) || Organisation.all.first
     @organisations = Organisation.children_of(@organisation)
     respond_to do |format|
@@ -19,12 +19,12 @@ class ReportsController < ApplicationController
 
   def membership_dataset
     @organisation = Organisation.find_by_id(params[:organisation_id])
-    render text: generate_csv
+    render text: generate_membership_csv
   end
 
   private
 
-    def generate_csv
+    def generate_membership_csv
       organisations = Organisation.subtree_of(@organisation)
       CSV.generate do |csv|
         csv << ["organisation", "membership_type", "year", "scout_type", "gender", "head_count"]

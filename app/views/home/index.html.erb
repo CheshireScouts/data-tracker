@@ -1,4 +1,6 @@
 <h3>Home</h3>
 Welcome to the Cheshire Scouts data tracker.
-<br><br>
-Please Login to use the service.
+<% unless user_signed_in? %>
+	<br><br>
+	Please Login to use the service.
+<% end %>
