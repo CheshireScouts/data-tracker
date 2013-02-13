@@ -1,9 +1,8 @@
 <div id="breadcrumbs">
-  <h4>
-    <% @organisation.ancestors.each do |o| %>
-      <%= link_to o.name, current_report_path(o.id) %> &gt;
-    <% end %>
-    <%= link_to @organisation.name, current_report_path(@organisation.id) %>
-  </h4>
+	<h4><%= action_name.capitalize %> Report for</h4>
+	<% @organisation.ancestors.each do |o| %>
+	  <%= link_to o.name, current_report_path(o.id) %> &gt;
+	<% end %>
+	<%= link_to @organisation.name, current_report_path(@organisation.id) %>
   <hr/>
 </div>
