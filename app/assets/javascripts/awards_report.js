@@ -1,16 +1,14 @@
-var membershipFields = [
+var awardsFields = [
     // filterable fields
     {name: 'organisation', type: 'string', filterable: true},
-    {name: 'membership_type', type: 'string', filterable: true, columnLabelable: true},
     {name: 'year', type: 'integer', filterable: true, columnLabelable: true},
-    {name: 'scout_type', type: 'string', filterable: true, columnLabelable: true},
-    {name: 'gender', type: 'string', filterable: true, columnLabelable: true},
+    {name: 'award_type', type: 'string', filterable: true, columnLabelable: true},
     
     // summary fields
-    {name: 'head_count', type: 'integer', rowLabelable: false, summarizable: 'sum'} 
+    {name: 'award_count', type: 'integer', rowLabelable: false, summarizable: 'sum'} 
 ]
 
-function setupMembershipPivot(input){
+function setupAwardsPivot(input){
 input.callbacks = {afterUpdateResults: function(){
   $('#results > table').dataTable({
     "sDom": "<'row'<'span6'l><'span6'f>>t<'row'<'span6'i><'span6'p>>",
@@ -23,11 +21,11 @@ input.callbacks = {afterUpdateResults: function(){
     }
   });
 }};
-$('#membership-pivot').pivot_display('setup', input);
+$('#awards-pivot').pivot_display('setup', input);
 };
 
-function render_membership_pivot() {
-setupMembershipPivot({url: $('#results').data('url'), fields: membershipFields, filters: {}, rowLabels:["organisation"], columnLabels:["year"],summaries:["head_count"]})
+function render_awards_pivot() {
+setupAwardsPivot({url: $('#results').data('url'), fields: awardsFields, filters: {}, rowLabels:["award_type"], columnLabels:["year"],summaries:["award_count"]})
 // prevent dropdown from closing after selection
   $('.stop-propagation').click(function(event){
     event.stopPropagation()

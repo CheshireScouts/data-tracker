@@ -2,8 +2,7 @@
 <html>
   <%= render 'layouts/head' %>
 
-  <body>
-  <%= render 'layouts/navigation' %>
+<body data-controller="<%= controller_name %>" data-action="<%= action_name %>">  <%= render 'layouts/navigation' %>
   <%= render 'layouts/two_column' %>  
   </body>
 </html>

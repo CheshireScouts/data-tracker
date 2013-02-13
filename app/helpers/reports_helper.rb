@@ -1,10 +1,23 @@
 module ReportsHelper
+
+  def current_report_path(organisation_id)
+    "/reports/" + action_name + "/#{organisation_id}"
+  end
+
   def membership_report_path(organisation_id)
     "/reports/membership/#{organisation_id}"
   end
 
+  def awards_report_path(organisation_id)
+    "/reports/awards/#{organisation_id}"
+  end
+
   def membership_dataset_path(organisation_id)
     "/reports/membership_dataset/#{organisation_id}"
+  end
+
+  def awards_dataset_path(organisation_id)
+    "/reports/awards_dataset/#{organisation_id}"
   end
 
   def organisation_tree(organisations)
