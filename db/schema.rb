@@ -11,16 +11,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130201163527) do
+ActiveRecord::Schema.define(:version => 20130217214209) do
 
   create_table "award_types", :force => true do |t|
     t.string   "code"
     t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+    t.integer  "scout_type_id"
   end
 
   add_index "award_types", ["code"], :name => "index_award_types_on_code", :unique => true
+  add_index "award_types", ["scout_type_id"], :name => "index_award_types_on_scout_type_id"
 
   create_table "awards", :force => true do |t|
     t.integer  "organisation_id"
