@@ -1,6 +1,7 @@
 <%= simple_form_for @award_type, :html => { :class => 'form-horizontal' } do |f| %>
   <%= f.input :code %>
   <%= f.input :name %>
+  <%= f.association :scout_type, collection: ScoutType.all(order: 'name'), value_method: :id, label_method: :name, include_blank: false %>
   <div class="form-actions">
     <%= f.button :submit, :class => 'btn-primary' %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),

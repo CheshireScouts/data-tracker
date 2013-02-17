@@ -1,3 +1,4 @@
 class AwardType < ActiveRecord::Base
-  attr_accessible :code, :name
+  belongs_to :scout_type
+  attr_accessible :code, :name, :scout_type, :scout_type_id
 end
