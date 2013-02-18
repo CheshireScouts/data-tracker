@@ -2,7 +2,7 @@ class CreateCompositeView < ActiveRecord::Migration
   def up
     sql = 
       'CREATE VIEW composites AS
-      SELECT c.organisation, c.year, c.scout_type, a.award_count, m.head_count
+      SELECT c.organisation_id, c.year_id, c.scout_type_id, a.award_count, m.head_count
       FROM
         (SELECT 
           o.id as organisation_id, o.name as organisation,
@@ -23,7 +23,8 @@ class CreateCompositeView < ActiveRecord::Migration
         FROM memberships m
         GROUP BY m.organisation_id, m.year_id, m.scout_type_id
         ) m
-      ON c.organisation_id = m.organisation_id AND c.year_id = m.year_id AND c.scout_type_id = m.scout_type_id'
+      ON c.organisation_id = m.organisation_id AND c.year_id = m.year_id AND c.scout_type_id = m.scout_type_id
+      WHERE a.award_count + m.head_count > 0'
     execute(sql)
     end
 

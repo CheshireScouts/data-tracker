@@ -9,6 +9,10 @@ class ReportsController < ApplicationController
     initialise_report
   end
 
+  def composite
+    initialise_report
+  end
+
   def membership_dataset
     @organisation = Organisation.find_by_id(params[:organisation_id])
     render text: generate_membership_csv
@@ -17,6 +21,11 @@ class ReportsController < ApplicationController
   def awards_dataset
     @organisation = Organisation.find_by_id(params[:organisation_id])
     render text: generate_awards_csv
+  end
+
+  def composite_dataset
+    @organisation = Organisation.find_by_id(params[:organisation_id])
+    render text: generate_composite_csv
   end
 
   private
@@ -48,6 +57,18 @@ class ReportsController < ApplicationController
         organisations.each do |o|
           o.awards.each do |a|
             csv << [o.name, a.year.name, a.award_type.name, a.award_count.to_s]
+          end
+        end
+      end
+    end
+
+   def generate_composite_csv
+     organisations = Organisation.subtree_of(@organisation)
+      CSV.generate do |csv|
+        csv << ["organisation", "year", "scout_type", "head_count" "award_count"]
+        organisations.each do |o|
+          o.composites.each do |c|
+            csv << [o.name, c.year.name, c.scout_type.name, c.head_count.to_s, c.award_count.to_s]
           end
         end
       end

@@ -20,6 +20,14 @@ module ReportsHelper
     "/reports/awards_dataset/#{organisation_id}"
   end
 
+  def composite_dataset_path
+    "reports/composite_dataset/#{organisation_id}"
+  end
+
+  def composite_report_path
+    "reports/composite/#{organisation_id}"
+  end
+
   def organisation_tree(organisations)
     organisations.map do |organisation, children|
       render('organisation_menu_item', :organisation => organisation) + content_tag(:div, organisation_tree(children), :class => "child_organisations")

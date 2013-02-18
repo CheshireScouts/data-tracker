@@ -5,6 +5,7 @@ class Organisation < ActiveRecord::Base
   has_many :children, :class_name => "Organisation"
   has_many :memberships, :class_name => "Membership"
   has_many :awards, :class_name => "Award"
+  has_many :composites, :class_name => "Composite"
   belongs_to :organisation_type
   attr_accessible :registration_no, :name, :parent, :parent_id, :organisation_type, :organisation_type_id
   has_ancestry
