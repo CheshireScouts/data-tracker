@@ -26,7 +26,7 @@ function setupCompositePivot(input){
 };
 
 function render_composite_pivot() {
-  setupCompositePivot({url: $('#results').data('url'), fields: compositeFields, filters: {}, rowLabels:["scout_type"], columnLabels:["year"],summaries:["award_count"]})
+  setupCompositePivot({url: $('#results').data('url'), fields: compositeFields, filters: {}, rowLabels:["scout_type", "year"], columnLabels:[],summaries:["award_count", "head_count"]})
   // prevent dropdown from closing after selection
   $('.stop-propagation').click(function(event){
     event.stopPropagation()
