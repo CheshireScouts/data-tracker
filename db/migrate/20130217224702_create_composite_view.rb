@@ -24,7 +24,7 @@ class CreateCompositeView < ActiveRecord::Migration
         GROUP BY m.organisation_id, m.year_id, m.scout_type_id
         ) m
       ON c.organisation_id = m.organisation_id AND c.year_id = m.year_id AND c.scout_type_id = m.scout_type_id
-      WHERE a.award_count + m.head_count > 0'
+      WHERE a.award_count IS NOT NULL OR m.head_count IS NOT NULL'
     execute(sql)
     end
 
