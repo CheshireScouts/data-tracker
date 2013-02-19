@@ -65,10 +65,14 @@ class ReportsController < ApplicationController
    def generate_composite_csv
      organisations = Organisation.subtree_of(@organisation)
       CSV.generate do |csv|
-        csv << ["organisation", "year", "scout_type", "head_count" "award_count"]
+        csv << ["organisation", "year", "scout_type", "head_count", "award_count"]
         organisations.each do |o|
           o.composites.each do |c|
-            csv << [o.name, c.year.name, c.scout_type.name, c.head_count.to_s, c.award_count.to_s]
+            headCount = c.head_count
+            headCount = 0 if headCount.nil?
+            awardCount = c.award_count
+            awardCount = 0 if awardCount.nil?
+            csv << [o.name, c.year.name, c.scout_type.name, headCount.to_s, awardCount.to_s]
           end
         end
       end

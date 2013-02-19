@@ -20,12 +20,12 @@ module ReportsHelper
     "/reports/awards_dataset/#{organisation_id}"
   end
 
-  def composite_dataset_path
-    "reports/composite_dataset/#{organisation_id}"
+  def composite_dataset_path(organisation_id)
+    "/reports/composite_dataset/#{organisation_id}"
   end
 
-  def composite_report_path
-    "reports/composite/#{organisation_id}"
+  def composite_report_path(organisation_id)
+    "/reports/composite/#{organisation_id}"
   end
 
   def organisation_tree(organisations)

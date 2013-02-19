@@ -1,4 +1,4 @@
-SITENAME = {
+DATA_TRACKER = {
   common: {
     init: function() {
       // application-wide code
@@ -11,19 +11,20 @@ SITENAME = {
     },
  
     membership: function() {
-      // action-specific code
       render_membership_pivot();
     },
     awards: function() {
-      // action-specific code
       render_awards_pivot();
+    },
+    composite: function() {
+      render_composite_pivot();
     }
   }
 };
  
 UTIL = {
   exec: function( controller, action ) {
-    var ns = SITENAME,
+    var ns = DATA_TRACKER,
         action = ( action === undefined ) ? "init" : action;
  
     if ( controller !== "" && ns[controller] && typeof ns[controller][action] == "function" ) {
