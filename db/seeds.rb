@@ -17,15 +17,6 @@ user = User.find_or_create_by_email :name => ENV['ADMIN_NAME'].dup, :email => EN
 puts 'user: ' << user.name
 user.add_role :admin
 
-AwardType.delete_all
-AwardType.create(code: 'BRONZE', name: 'Chief Scout\'s Bronze Award')
-AwardType.create(code: 'SILVER', name: 'Chief Scout\'s Silver Award')
-AwardType.create(code: 'GOLD', name: 'Chief Scout\'s Gold Award')
-AwardType.create(code: 'DIAMOND', name: 'Chief Scout\'s Diamond Award')
-AwardType.create(code: 'PLATINUM', name: 'Chief Scout\'s Platinum Award')
-AwardType.create(code: 'QUEEN', name: 'Queen\'s Scout Award')
-puts 'Created Award Types'
-
 ScoutType.delete_all
 beavers = ScoutType.create!(code: 'BEAVERS', name: 'Beaver Scouts')
 cubs = ScoutType.create!(code: 'CUBS', name: 'Cub Scouts')
@@ -34,9 +25,24 @@ explorers = ScoutType.create!(code: 'EXPLORERS', name: 'Explorer Scouts')
 network = ScoutType.create!(code: 'NETWORK', name: 'Network Scouts')
 support = ScoutType.create!(code: 'SUPPORT', name: 'Active Support')
 leaders = ScoutType.create!(code: 'LEADERS', name: 'Leaders')
-assistant = ScoutType.create!(code: 'ASSISTANT', name: 'Sectional Assistants and Skills Instructors')
+assistants = ScoutType.create!(code: 'ASSISTANTS', name: 'Sectional Assistants')
+instructors = ScoutType.create!(code: 'INSTRUCTORS', name: 'Skills Instructors')
+advisers = ScoutType.create!(code: 'ADVISERS', name: 'Advisers')
+office = ScoutType.create!(code: 'OFFICE', name: 'Ofiice Bearers')
+commissioners = ScoutType.create!(code: 'COMMISSIONERS', name: 'Commissioners')
+scouters = ScoutType.create!(code: 'SCOUTERS', name: 'Scouters')
+admin = ScoutType.create!(code: 'ADMIN', name: 'Administrators')
 other = ScoutType.create!(code: 'OTHER', name: 'Other Adults')
 puts 'Created Scout Types'
+
+AwardType.delete_all
+AwardType.create(code: 'BRONZE', name: 'Chief Scout\'s Bronze Award', scout_type: beavers)
+AwardType.create(code: 'SILVER', name: 'Chief Scout\'s Silver Award', scout_type: cubs)
+AwardType.create(code: 'GOLD', name: 'Chief Scout\'s Gold Award', scout_type: scouts)
+AwardType.create(code: 'DIAMOND', name: 'Chief Scout\'s Diamond Award', scout_type: explorers)
+AwardType.create(code: 'PLATINUM', name: 'Chief Scout\'s Platinum Award', scout_type: explorers)
+AwardType.create(code: 'QUEEN', name: 'Queen\'s Scout Award', scout_type: explorers)
+puts 'Created Award Types'
 
 MembershipType.delete_all
 member = MembershipType.create!(code: 'M', name: 'Member')
@@ -47,41 +53,56 @@ OrganisationType.delete_all
 county = OrganisationType.create(code: 'COUNTY', name: 'Scout County')
 district = OrganisationType.create(code: 'DISTRICT', name: 'Scout District')
 group = OrganisationType.create(code: 'GROUP', name: 'Scout Group')
-explorers = OrganisationType.create(code: 'ESU', name: 'Explorer Scout Unit')
-network = OrganisationType.create(code: 'NETWORK', name: 'Network Unit')
+esu = OrganisationType.create(code: 'ESU', name: 'Explorer Scout Unit')
+nu = OrganisationType.create(code: 'NETWORK', name: 'Network Unit')
 asu = OrganisationType.create(code: 'ASU', name: 'Active Support Unit')
 puts 'Created Organisation Types'
 
 CensusFormat.delete_all
 group_format_2005 = CensusFormat.create(name: '2005 Group Format', table_xpath: '/html/body/table/tr[3]/td[1]/table/')
-puts 'Created Census Formats'
+district_format_2005 = CensusFormat.create(name: '2005 District Format', table_xpath: '/html/body/table/tr[3]/td[1]/table/')
 
 CensusTableFormat.delete_all
 CensusTableFormat.create(census_format: group_format_2005, scout_type: beavers, membership_type: member, row: 5, column: 8)
 CensusTableFormat.create(census_format: group_format_2005, scout_type: cubs, membership_type: member, row: 7, column: 8)
 CensusTableFormat.create(census_format: group_format_2005, scout_type: scouts, membership_type: member, row: 9, column: 9)
 CensusTableFormat.create(census_format: group_format_2005, scout_type: leaders, membership_type: member, row: 11, column: 9)
-CensusTableFormat.create(census_format: group_format_2005, scout_type: assistant, membership_type: member, row: 13, column: 8)
+CensusTableFormat.create(census_format: group_format_2005, scout_type: assistants, membership_type: member, row: 13, column: 8)
 CensusTableFormat.create(census_format: group_format_2005, scout_type: support, membership_type: member, row: 15, column: 4)
 CensusTableFormat.create(census_format: group_format_2005, scout_type: other, membership_type: member, row: 18, column: 4)
 CensusTableFormat.create(census_format: group_format_2005, scout_type: support, membership_type: associate, row: 16, column: 3)
 CensusTableFormat.create(census_format: group_format_2005, scout_type: other, membership_type: associate, row: 19, column: 3)
-puts 'Created Census Table Formats'
+
+CensusTableFormat.create(census_format: district_format_2005, scout_type: network, membership_type: member, row: 6, column: 8)
+CensusTableFormat.create(census_format: district_format_2005, scout_type: explorers, membership_type: member, row: 9, column: 9)
+CensusTableFormat.create(census_format: district_format_2005, scout_type: leaders, membership_type: member, row: 10, column: 3)
+CensusTableFormat.create(census_format: district_format_2005, scout_type: assistants, membership_type: member, row: 11, column: 3)
+CensusTableFormat.create(census_format: district_format_2005, scout_type: instructors, membership_type: member, row: 13, column: 3)
+CensusTableFormat.create(census_format: district_format_2005, scout_type: advisers, membership_type: member, row: 14, column: 3)
+CensusTableFormat.create(census_format: district_format_2005, scout_type: office, membership_type: member, row: 16, column: 3)
+CensusTableFormat.create(census_format: district_format_2005, scout_type: commissioners, membership_type: member, row: 18, column: 3)
+CensusTableFormat.create(census_format: district_format_2005, scout_type: scouters, membership_type: member, row: 19, column: 3)
+CensusTableFormat.create(census_format: district_format_2005, scout_type: admin, membership_type: member, row: 27, column: 3)
+CensusTableFormat.create(census_format: district_format_2005, scout_type: support, membership_type: member, row: 21, column: 3)
+CensusTableFormat.create(census_format: district_format_2005, scout_type: other, membership_type: member, row: 24, column: 3)
+CensusTableFormat.create(census_format: district_format_2005, scout_type: support, membership_type: associate, row: 2, column: 3)
+CensusTableFormat.create(census_format: district_format_2005, scout_type: other, membership_type: associate, row: 25, column: 3)
+puts 'Created Census Formats'
 
 Year.delete_all
 Year.create(name: 2001)
 Year.create(name: 2002)
 Year.create(name: 2003)
 Year.create(name: 2004)
-Year.create(name: 2005, census_format: group_format_2005)
-Year.create(name: 2006, census_format: group_format_2005)
-Year.create(name: 2007, census_format: group_format_2005)
-Year.create(name: 2008, census_format: group_format_2005)
-Year.create(name: 2009, census_format: group_format_2005)
-Year.create(name: 2010, census_format: group_format_2005)
-Year.create(name: 2011, census_format: group_format_2005)
-Year.create(name: 2012, census_format: group_format_2005)
-Year.create(name: 2013, census_format: group_format_2005)
+Year.create(name: 2005, group_census_format: group_format_2005, district_census_format: district_format_2005)
+Year.create(name: 2006, group_census_format: group_format_2005, district_census_format: district_format_2005)
+Year.create(name: 2007, group_census_format: group_format_2005, district_census_format: district_format_2005)
+Year.create(name: 2008, group_census_format: group_format_2005, district_census_format: district_format_2005)
+Year.create(name: 2009, group_census_format: group_format_2005, district_census_format: district_format_2005)
+Year.create(name: 2010, group_census_format: group_format_2005, district_census_format: district_format_2005)
+Year.create(name: 2011, group_census_format: group_format_2005, district_census_format: district_format_2005)
+Year.create(name: 2012, group_census_format: group_format_2005, district_census_format: district_format_2005)
+Year.create(name: 2013, group_census_format: group_format_2005, district_census_format: district_format_2005)
 puts 'Created Years'
 
 Organisation.delete_all

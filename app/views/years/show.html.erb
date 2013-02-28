@@ -6,8 +6,10 @@
 <dl class="dl-horizontal">
   <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
   <dd><%= @year.name %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:census_format) %>:</strong></dt>
-  <dd><%= @year.census_format.name %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:group_census_format) %>:</strong></dt>
+  <dd><%= @year.group_census_format.name %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:district_census_format) %>:</strong></dt>
+  <dd><%= @year.district_census_format.name %></dd>
 </dl>
 
 <div class="form-actions">

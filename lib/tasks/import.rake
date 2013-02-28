@@ -4,7 +4,7 @@ namespace :import do
 
 
     census = CensusImporter.new
-    census.create_memberships_for_all_groups("2013")
+    census.create_memberships
 
   end
 end

@@ -6,7 +6,8 @@
   <thead>
     <tr>    
       <th><%= model_class.human_attribute_name(:name) %></th>
-      <th><%= model_class.human_attribute_name(:census_format) %></th>
+      <th><%= model_class.human_attribute_name(:group_census_format) %></th>
+      <th><%= model_class.human_attribute_name(:district_census_format) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
@@ -14,7 +15,8 @@
     <% @years.each do |year| %>
       <tr>
         <td><%= link_to year.name, year_path(year) %></td>
-        <td><%= year.census_format.name if year.census_format %></td>
+        <td><%= year.group_census_format.name if year.group_census_format %></td>
+        <td><%= year.district_census_format.name if year.district_census_format %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_year_path(year), :class => 'btn btn-mini' %>

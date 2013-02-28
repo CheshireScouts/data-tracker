@@ -16,9 +16,9 @@ ActiveRecord::Schema.define(:version => 20130217224702) do
   create_table "award_types", :force => true do |t|
     t.string   "code"
     t.string   "name"
+    t.integer  "scout_type_id"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
-    t.integer  "scout_type_id"
   end
 
   add_index "award_types", ["code"], :name => "index_award_types_on_code", :unique => true
@@ -151,9 +151,10 @@ ActiveRecord::Schema.define(:version => 20130217224702) do
 
   create_table "years", :force => true do |t|
     t.integer  "name"
-    t.integer  "census_format_id"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.integer  "group_census_format_id"
+    t.integer  "district_census_format_id"
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
   end
 
 end
