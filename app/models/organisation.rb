@@ -7,7 +7,7 @@ class Organisation < ActiveRecord::Base
   has_many :awards, :class_name => "Award"
   has_many :composites, :class_name => "Composite"
   belongs_to :organisation_type
-  attr_accessible :registration_no, :name, :parent, :parent_id, :organisation_type, :organisation_type_id
+  attr_accessible :registration_no, :census_url_no, :name, :parent, :parent_id, :organisation_type, :organisation_type_id
   has_ancestry
 
   def self.import(file)
@@ -15,10 +15,11 @@ class Organisation < ActiveRecord::Base
       CSV.foreach(file.path, headers: true) do |row|
         record = row.to_hash
         reg = record["registration_no"]
+        census = record["census_url_no"]
         name = record["name"]
         type = OrganisationType.find_by_code(record["organisation_type"])
         parent = Organisation.find_by_registration_no(record["parent"])
-        Organisation.create!(registration_no: reg, name: name, organisation_type: type, parent: parent)
+        Organisation.create!(registration_no: reg, census_url_no: census, name: name, organisation_type: type, parent: parent)
       end
     end
   end

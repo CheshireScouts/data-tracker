@@ -15,6 +15,7 @@ upload_organisations_path,
   <thead>
     <tr>
       <th><%= model_class.human_attribute_name(:registration_no) %></th>
+      <th><%= model_class.human_attribute_name(:census_url_no) %></th>
       <th><%= model_class.human_attribute_name(:name) %></th>
       <th><%= model_class.human_attribute_name(:organisation_type_id) %></th>
       <th><%= model_class.human_attribute_name(:parent_id) %></th>
@@ -25,6 +26,7 @@ upload_organisations_path,
     <% @organisations.each do |organisation| %>
       <tr>
         <td><%= link_to organisation.registration_no, organisation_path(organisation) %></td>
+        <td><%= organisation.census_url_no %></td>
         <td><%= link_to organisation.name, organisation_path(organisation) %></td>
         <td><%= organisation.organisation_type.name %></td>
         <td><%= link_to organisation.parent.name, organisation_path(organisation.parent) if organisation.parent %></td>

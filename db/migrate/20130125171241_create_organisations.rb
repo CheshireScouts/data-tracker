@@ -2,6 +2,7 @@ class CreateOrganisations < ActiveRecord::Migration
   def change
     create_table :organisations do |t|
       t.string :registration_no
+      t.string :census_url_no
       t.string :name
       t.references :organisation_type
       t.references :parent, :class_name => "Organisation"

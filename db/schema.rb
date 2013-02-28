@@ -94,6 +94,7 @@ ActiveRecord::Schema.define(:version => 20130217224702) do
 
   create_table "organisations", :force => true do |t|
     t.string   "registration_no"
+    t.string   "census_url_no"
     t.string   "name"
     t.integer  "organisation_type_id"
     t.datetime "created_at",           :null => false

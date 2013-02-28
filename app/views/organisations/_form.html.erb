@@ -1,5 +1,6 @@
 <%= simple_form_for @organisation, html: { class: 'form-horizontal' } do |f| %>
   <%= f.input :registration_no, input_html: {class: "input-xxlarge"} %>
+  <%= f.input :census_url_no, input_html: {class: "input-xxlarge"} %>
   <%= f.input :name, input_html: {class: "input-xxlarge"} %>
   <%= f.association :organisation_type, collection: OrganisationType.all(order: 'name'), value_method: :id, label_method: :name, include_blank: false %>
   <%= f.association :parent, collection: Organisation.all(order: 'name'), value_method: :id, label_method: :name, include_blank: false %>

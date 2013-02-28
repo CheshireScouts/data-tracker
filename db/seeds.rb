@@ -106,6 +106,6 @@ Year.create(name: 2013, group_census_format: group_format_2005, district_census_
 puts 'Created Years'
 
 Organisation.delete_all
-Organisation.create(registration_no: '00108', name: 'Cheshire Scouts', organisation_type: county)
+Organisation.create(registration_no: '00108', census_url_no: '108', name: 'Cheshire Scouts', organisation_type: county)
 puts 'Created Cheshire Scouts'
 

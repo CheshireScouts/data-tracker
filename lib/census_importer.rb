@@ -52,7 +52,7 @@ class CensusImporter
   def create_memberships_for_organisation_and_year(organisation, year)
     if @login_status
       @organisation = organisation
-      @census_year = year
+      @year = year
       @organisation_return_page = get_page_for_organisation_and_year
 
       case @organisation.organisation_type.code
@@ -65,9 +65,9 @@ class CensusImporter
       end
 
       if @organisation_return_page.nil?
-        puts "No page found for #{@organisation.registration_no} #{@census_year.name}"
+        puts "No page found for #{@organisation.registration_no} #{year.name}"
       else
-        Membership.where(:organisation_id => @organisation, :year_id => @census_year).delete_all
+        Membership.where(:organisation_id => @organisation, :year_id => @year).delete_all
         @census_format.census_table_formats.each do |cell|
           create_memberships_from_table_cell(cell)
         end
@@ -81,11 +81,21 @@ private
       female_head_count = get_head_counts_from_cell(cell)[2]
 
       if male_head_count =~ /\d+/
-        Membership.create(organisation: @organisation, scout_type: cell.scout_type, membership_type: cell.membership_type, year: @census_year, gender: 'M', head_count: male_head_count)
+        Membership.create(
+          organisation: @organisation, 
+          scout_type: cell.scout_type, 
+          membership_type: cell.membership_type, 
+          year: @year, gender: 'M', 
+          head_count: male_head_count)
       end
 
       if female_head_count =~ /\d+/
-        Membership.create(organisation: @organisation, scout_type: cell.scout_type, membership_type: cell.membership_type, year: @census_year, gender: 'F', head_count: female_head_count)
+        Membership.create(
+          organisation: @organisation, 
+          scout_type: cell.scout_type, 
+          membership_type: cell.membership_type, 
+          year: @year, gender: 'F', 
+          head_count: female_head_count)
       end
     end
       
@@ -106,12 +116,7 @@ private
     end
 
     def get_url_for_organisation_and_year
-      if @organisation.organisation_type.code == "GROUP"
-        prefix = "2"
-      else
-        prefix = ""
-      end
-      return "#{@main_url}/index.php/view/#{prefix}#{@organisation.registration_no}/#{@census_year.name}"
+      return "#{@main_url}/index.php/view/#{@organisation.census_url_no}/#{@year.name}"
     end 
 
     def login
