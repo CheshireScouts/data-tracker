@@ -96,6 +96,7 @@ ActiveRecord::Schema.define(:version => 20130217224702) do
     t.string   "registration_no"
     t.string   "census_url_no"
     t.string   "name"
+    t.string   "status"
     t.integer  "organisation_type_id"
     t.datetime "created_at",           :null => false
     t.datetime "updated_at",           :null => false
@@ -105,6 +106,7 @@ ActiveRecord::Schema.define(:version => 20130217224702) do
   add_index "organisations", ["ancestry"], :name => "index_organisations_on_ancestry"
   add_index "organisations", ["organisation_type_id"], :name => "index_organisations_on_organisation_type_id"
   add_index "organisations", ["registration_no"], :name => "index_organisations_on_registration_no", :unique => true
+  add_index "organisations", ["status"], :name => "index_organisations_on_status"
 
   create_table "roles", :force => true do |t|
     t.string   "name"

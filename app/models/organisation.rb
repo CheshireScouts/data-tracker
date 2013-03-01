@@ -1,5 +1,7 @@
 class Organisation < ActiveRecord::Base
   require 'csv'
+
+  STATES = %w{'Open', 'Closed'}
   
   belongs_to :parent, :class_name => "Organisation"
   has_many :children, :class_name => "Organisation"
@@ -7,8 +9,10 @@ class Organisation < ActiveRecord::Base
   has_many :awards, :class_name => "Award"
   has_many :composites, :class_name => "Composite"
   belongs_to :organisation_type
-  attr_accessible :registration_no, :census_url_no, :name, :parent, :parent_id, :organisation_type, :organisation_type_id
+  attr_accessible :registration_no, :census_url_no, :name, :status, :parent, :parent_id, :organisation_type, :organisation_type_id
   has_ancestry
+
+  scope :open, where(status: "Open")
 
   def self.import(file)
     unless file.nil?
@@ -17,9 +21,10 @@ class Organisation < ActiveRecord::Base
         reg = record["registration_no"]
         census = record["census_url_no"]
         name = record["name"]
+        status = record["status"]
         type = OrganisationType.find_by_code(record["organisation_type"])
         parent = Organisation.find_by_registration_no(record["parent"])
-        Organisation.create!(registration_no: reg, census_url_no: census, name: name, organisation_type: type, parent: parent)
+        Organisation.create!(registration_no: reg, census_url_no: census, name: name, status: status, organisation_type: type, parent: parent)
       end
     end
   end

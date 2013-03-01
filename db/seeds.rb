@@ -44,6 +44,9 @@ AwardType.create(code: 'SILVER', name: 'Chief Scout\'s Silver Award')
 AwardType.create(code: 'GOLD', name: 'Chief Scout\'s Gold Award')
 AwardType.create(code: 'DIAMOND', name: 'Chief Scout\'s Diamond Award')
 AwardType.create(code: 'PLATINUM', name: 'Chief Scout\'s Platinum Award')
+AwardType.create(code: 'DOFEBRONZE', name: 'Duke of Edinburgh\'s Bronze Award')
+AwardType.create(code: 'DOFESILVER', name: 'Duke of Edinburgh\'s Silver Award')
+AwardType.create(code: 'DOFEGOLD', name: 'Duke of Edinburgh\'s Gold Award')
 AwardType.create(code: 'QUEEN', name: 'Queen\'s Scout Award')
 puts 'Created Award Types'
 
@@ -77,7 +80,7 @@ CensusTableFormat.create(census_format: group_format_2005, scout_type: support, 
 CensusTableFormat.create(census_format: group_format_2005, scout_type: other, membership_type: associate, row: 19, column: 3)
 
 CensusTableFormat.create(census_format: district_format_2005, scout_type: network, membership_type: member, row: 6, column: 8)
-CensusTableFormat.create(census_format: district_format_2005, scout_type: explorers, membership_type: member, row: 9, column: 9)
+CensusTableFormat.create(census_format: district_format_2005, scout_type: explorers, membership_type: member, row: 8, column: 9)
 CensusTableFormat.create(census_format: district_format_2005, scout_type: leaders, membership_type: member, row: 10, column: 3)
 CensusTableFormat.create(census_format: district_format_2005, scout_type: assistants, membership_type: member, row: 11, column: 3)
 CensusTableFormat.create(census_format: district_format_2005, scout_type: instructors, membership_type: member, row: 13, column: 3)
@@ -109,6 +112,6 @@ Year.create(name: 2013, group_census_format: group_format_2005, district_census_
 puts 'Created Years'
 
 Organisation.delete_all
-Organisation.create(registration_no: '00108', census_url_no: '108', name: 'Cheshire Scouts', organisation_type: county)
+Organisation.create(registration_no: '00108', census_url_no: '108', name: 'Cheshire Scouts', status: 'Open', organisation_type: county)
 puts 'Created Cheshire Scouts'
 
