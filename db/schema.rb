@@ -156,6 +156,7 @@ ActiveRecord::Schema.define(:version => 20130217224702) do
     t.integer  "name"
     t.integer  "group_census_format_id"
     t.integer  "district_census_format_id"
+    t.integer  "county_census_format_id"
     t.datetime "created_at",                :null => false
     t.datetime "updated_at",                :null => false
   end

@@ -4,6 +4,7 @@ class CreateYears < ActiveRecord::Migration
       t.integer :name
       t.references :group_census_format, :class_name => "CensusFormat"
       t.references :district_census_format, :class_name => "CensusFormat"
+      t.references :county_census_format, :class_name => "CensusFormat"
       t.timestamps
     end
   end

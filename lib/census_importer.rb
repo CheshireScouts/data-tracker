@@ -9,8 +9,17 @@ class CensusImporter
   end
 
   def create_memberships
+    create_memberships_for_all_counties
     create_memberships_for_all_districts
     create_memberships_for_all_groups
+  end
+
+  def create_memberships_for_all_counties
+    if @login_status
+      OrganisationType.find_by_code("COUNTY").organisations.each do |county|
+        create_memberships_for_county(county)
+      end
+    end
   end
 
   def create_memberships_for_all_districts
@@ -29,11 +38,11 @@ class CensusImporter
     end
   end
 
-  def create_memberships_for_group(group)
+  def create_memberships_for_county(county)
     if @login_status
       Year.find(:all).each do |year|
-          unless year.group_census_format.nil?
-            create_memberships_for_organisation_and_year(group, year)
+          unless year.county_census_format.nil?
+            create_memberships_for_organisation_and_year(county, year)
           end
       end
     end
@@ -44,6 +53,16 @@ class CensusImporter
       Year.find(:all).each do |year|
           unless year.district_census_format.nil?
             create_memberships_for_organisation_and_year(district, year)
+          end
+      end
+    end
+  end
+
+  def create_memberships_for_group(group)
+    if @login_status
+      Year.find(:all).each do |year|
+          unless year.group_census_format.nil?
+            create_memberships_for_organisation_and_year(group, year)
           end
       end
     end
@@ -60,6 +79,8 @@ class CensusImporter
           @census_format = year.group_census_format
         when "DISTRICT" then
           @census_format = year.district_census_format
+        when "COUNTY" then
+          @census_format = year.county_census_format
         else
           puts "No valid organisation type found for #{@organisation.registration_no}"
       end
