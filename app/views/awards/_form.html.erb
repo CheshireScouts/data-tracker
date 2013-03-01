@@ -2,6 +2,7 @@
   <%= f.association :organisation, collection: Organisation.all(order: 'name'), value_method: :id, label_method: :name, include_blank: false %>
   <%= f.association :year, collection: Year.all(order: 'name'), value_method: :id, label_method: :name, include_blank: false %>
   <%= f.association :award_type, collection: AwardType.all(order: 'name'), value_method: :id, label_method: :name, include_blank: false %>
+  <%= f.association :scout_type, collection: ScoutType.all(order: 'name'), value_method: :id, label_method: :name, include_blank: false %>
   <%= f.input :award_count %>
   <div class="form-actions">
     <%= f.button :submit, :class => 'btn-primary' %>

@@ -7,7 +7,6 @@
     <tr>
       <th><%= model_class.human_attribute_name(:code) %></th>
       <th><%= model_class.human_attribute_name(:name) %></th>
-      <th><%= model_class.human_attribute_name(:scout_type) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
@@ -16,7 +15,6 @@
       <tr>
         <td><%= award_type.code %></td>
         <td><%= award_type.name %></td>
-        <td><%= award_type.scout_type.name %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_award_type_path(award_type), :class => 'btn btn-mini' %>

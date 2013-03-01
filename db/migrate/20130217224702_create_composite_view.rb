@@ -12,11 +12,9 @@ class CreateCompositeView < ActiveRecord::Migration
         CROSS JOIN years y
         CROSS JOIN scout_types t) c
       LEFT JOIN
-        (SELECT a.organisation_id, a.year_id, t.scout_type_id, SUM(a.award_count) as award_count
-        FROM awards a
-        JOIN award_types t
-        ON a.award_type_id = t.id
-        GROUP BY a.organisation_id, a.year_id, t.scout_type_id) a
+        (SELECT organisation_id, year_id, scout_type_id, SUM(award_count) as award_count
+        FROM awards
+        GROUP BY organisation_id, year_id, scout_type_id) a
       ON c.organisation_id = a.organisation_id AND c.year_id = a.year_id AND c.scout_type_id = a.scout_type_id
       LEFT JOIN
         (SELECT m.organisation_id, m.year_id, m.scout_type_id, SUM(m.head_count) as head_count

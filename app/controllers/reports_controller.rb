@@ -31,7 +31,7 @@ class ReportsController < ApplicationController
   private
 
     def initialise_report
-      @organisation = Organisation.find_by_id(params[:organisation_id]) || Organisation.all.first
+      @organisation = Organisation.find_by_id(params[:organisation_id]) || Organisation.all.first.root
       @organisations = Organisation.children_of(@organisation)
       respond_to do |format|
         format.html

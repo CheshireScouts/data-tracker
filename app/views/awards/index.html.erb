@@ -17,6 +17,7 @@ upload_awards_path,
       <th><%= model_class.human_attribute_name(:organisation_id) %></th>
       <th><%= model_class.human_attribute_name(:year_id) %></th>
       <th><%= model_class.human_attribute_name(:award_type_id) %></th>
+      <th><%= model_class.human_attribute_name(:scout_type_id) %></th>
       <th><%= model_class.human_attribute_name(:award_count) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
@@ -27,6 +28,7 @@ upload_awards_path,
         <td><%= link_to award.organisation.name, organisation_path(award.organisation) %></td>
         <td><%= award.year.name%></td>
         <td><%= award.award_type.name %></td>
+        <td><%= award.scout_type.name %></td>
         <td><%= award.award_count %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),

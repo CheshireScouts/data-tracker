@@ -17,6 +17,9 @@ user = User.find_or_create_by_email :name => ENV['ADMIN_NAME'].dup, :email => EN
 puts 'user: ' << user.name
 user.add_role :admin
 
+Membership.delete_all
+Award.delete_all
+
 ScoutType.delete_all
 beavers = ScoutType.create!(code: 'BEAVERS', name: 'Beaver Scouts')
 cubs = ScoutType.create!(code: 'CUBS', name: 'Cub Scouts')
@@ -36,12 +39,12 @@ other = ScoutType.create!(code: 'OTHER', name: 'Other Adults')
 puts 'Created Scout Types'
 
 AwardType.delete_all
-AwardType.create(code: 'BRONZE', name: 'Chief Scout\'s Bronze Award', scout_type: beavers)
-AwardType.create(code: 'SILVER', name: 'Chief Scout\'s Silver Award', scout_type: cubs)
-AwardType.create(code: 'GOLD', name: 'Chief Scout\'s Gold Award', scout_type: scouts)
-AwardType.create(code: 'DIAMOND', name: 'Chief Scout\'s Diamond Award', scout_type: explorers)
-AwardType.create(code: 'PLATINUM', name: 'Chief Scout\'s Platinum Award', scout_type: explorers)
-AwardType.create(code: 'QUEEN', name: 'Queen\'s Scout Award', scout_type: explorers)
+AwardType.create(code: 'BRONZE', name: 'Chief Scout\'s Bronze Award')
+AwardType.create(code: 'SILVER', name: 'Chief Scout\'s Silver Award')
+AwardType.create(code: 'GOLD', name: 'Chief Scout\'s Gold Award')
+AwardType.create(code: 'DIAMOND', name: 'Chief Scout\'s Diamond Award')
+AwardType.create(code: 'PLATINUM', name: 'Chief Scout\'s Platinum Award')
+AwardType.create(code: 'QUEEN', name: 'Queen\'s Scout Award')
 puts 'Created Award Types'
 
 MembershipType.delete_all

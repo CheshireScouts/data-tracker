@@ -4,7 +4,8 @@ class Award < ActiveRecord::Base
   belongs_to :organisation
   belongs_to :year
   belongs_to :award_type
-  attr_accessible :organisation, :organisation_id, :year, :year_id, :award_type, :award_type_id, :award_count
+  belongs_to :scout_type
+  attr_accessible :organisation, :organisation_id, :year, :year_id, :award_type, :award_type_id, :award_count, :scout_type, :scout_type_id
 
   def self.import(file)
     unless file.nil?
@@ -13,8 +14,14 @@ class Award < ActiveRecord::Base
         organisation = Organisation.find_by_registration_no(record["organisation"])
         year = Year.find_by_name(record["year"])
         award_type = AwardType.find_by_code(record["award_type"])
+        scout_type = ScoutType.find_by_code(record["scout_type"])
         award_count = record["award_count"]
-        Award.create(organisation: organisation, year: year, award_type: award_type, award_count: award_count)
+        Award.create(
+          organisation: organisation, 
+          year: year, 
+          award_type: award_type, 
+          scout_type: scout_type, 
+          award_count: award_count)
       end
     end
   end
