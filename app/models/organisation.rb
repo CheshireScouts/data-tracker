@@ -12,6 +12,8 @@ class Organisation < ActiveRecord::Base
   attr_accessible :registration_no, :census_url_no, :name, :status, :parent, :parent_id, :organisation_type, :organisation_type_id
   has_ancestry
 
+  validates_presence_of :registration_no, :census_url_no, :name, :status
+
   scope :open, where(status: "Open")
 
   def self.import(file)

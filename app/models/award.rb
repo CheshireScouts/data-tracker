@@ -7,6 +7,8 @@ class Award < ActiveRecord::Base
   belongs_to :scout_type
   attr_accessible :organisation, :organisation_id, :year, :year_id, :award_type, :award_type_id, :award_count, :scout_type, :scout_type_id
 
+  validates_presence_of :organisation, :year, :award_type, :scout_type
+
   def self.import(file)
     unless file.nil?
       CSV.foreach(file.path, headers: true) do |row|
