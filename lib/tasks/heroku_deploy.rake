@@ -20,33 +20,26 @@ namespace :deploy do
   task :before_deploy, :env, :branch do |t, args|
     puts "Deploying branch '#{args[:branch]}' to #{args[:env]}"
 
-    status =`git status`.strip
-    
+    status =`git status`.strip 
     unless status.include?("nothing to commit, working directory clean")
-     puts "Uncommitted changes in working directory"
-     puts status
-     Rake::Task['deploy:abandon_deploy'].invoke 
+     print_message :error, "Uncommitted changes in working directory"
+     abandon_deploy(args[:env], args[:branch])
     end
 
     if (args[:env] == :production && args[:branch] != 'master') || (args[:env] == :staging && args[:branch] != 'develop')
       print "Are you sure you want to deploy branch '#{args[:branch]}' to #{args[:env]}? (y/n) " and STDOUT.flush
       char = $stdin.getc
       if char != ?y && char != ?Y
-        Rake::Task['deploy:abandon_deploy'].invoke 
+        abandon_deploy(args[:env], args[:branch])
       end
     end
 
   end
 
   task :after_deploy, :env, :branch do |t, args|
-    puts "Deployment Complete"
+    print_message :footer, "Completed deployment of branch '#{args[:branch]}' to #{ENVIRONMENTS[args[:env]]}"
   end
 
-  task :abandon_deploy do
-    puts "--"
-    puts "Deployment Aborted"
-    exit 
-  end
 
   task :update_code, :env, :branch do |t, args|
     FileUtils.cd Rails.root do
@@ -57,10 +50,28 @@ namespace :deploy do
         print "Also push changes to Github? (y/n)" and STDOUT.flush
         char = $stdin.getc
         if char == ?y || char == ?Y
+          puts "Pushing branch '#{args[:branch]}' to Github"
           `git push #{ENVIRONMENTS[:github]} #{args[:branch]}`
         end
       end
 
+    end
+  end
+
+  def abandon_deploy(env, branch)
+    print_message :footer, "Abandoned deployment of branch '#{branch}' to #{env}"
+    exit
+  end
+
+  def print_message(type, message)
+    if type == :footer
+      80.times {print "-"}
+      puts "\n#{message}"
+      80.times {print "-"}
+    end
+
+    if type == :error
+      puts "ERROR: #{message}"
     end
   end
 
