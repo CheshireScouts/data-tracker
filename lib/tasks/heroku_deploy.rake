@@ -18,19 +18,33 @@ namespace :deploy do
 
   task :before_deploy, :env, :branch do |t, args|
     puts "Deploying #{args[:branch]} to #{args[:env]}"
+    
+    status =`git status`.strip
+    
+    unless status.include?("nothing to commit (working directory clean)")
+     puts "Uncommitted changes in working directory:"
+     puts status
+     Rake::Task['deploy:abandon_deploy'].invoke 
+    end
 
     if (args[:env] == :production && args[:branch] != 'master') || (args[:env] == :staging && args[:branch] != 'develop')
       print "Are you sure you want to deploy branch'#{args[:branch]}' to #{args[:env]}? (y/n) " and STDOUT.flush
       char = $stdin.getc
       if char != ?y && char != ?Y
-        puts "Deployment aborted"
-        exit 
+        Rake::Task['deploy:abandon_deploy'].invoke 
       end
     end
+
   end
 
   task :after_deploy, :env, :branch do |t, args|
     puts "Deployment Complete"
+  end
+
+  task :abandon_deploy do
+    puts "--"
+    puts "Deployment aborted"
+    exit 
   end
 
   task :update_code, :env, :branch do |t, args|
