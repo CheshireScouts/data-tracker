@@ -1,4 +1,3 @@
-# List of environments and their heroku git remotes
 ENVIRONMENTS = {
   :staging => 'staging',
   :production => 'production',
@@ -43,7 +42,6 @@ namespace :deploy do
 
   task :update_code, :env, :branch do |t, args|
     FileUtils.cd Rails.root do
-      puts "Updating #{ENVIRONMENTS[args[:env]]} from branch '#{args[:branch]}'"
       `git push #{ENVIRONMENTS[args[:env]]} +#{args[:branch]}:master`
 
       if args[:branch] == 'master' || args[:branch] == 'develop'
