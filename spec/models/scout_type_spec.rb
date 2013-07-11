@@ -11,7 +11,7 @@ describe ScoutType do
   end
 
   it 'should have many memberships' do
-    FactoryGirl.create(:year).should have_many(:memberships)
+    FactoryGirl.create(:scout_type).should have_many(:memberships)
   end
   
 end
