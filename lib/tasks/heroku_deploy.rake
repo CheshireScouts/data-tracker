@@ -28,7 +28,7 @@ namespace :deploy do
     end
 
     if (args[:env] == :production && args[:branch] != 'master') || (args[:env] == :staging && args[:branch] != 'develop')
-      print "Are you sure you want to deploy branch'#{args[:branch]}' to #{args[:env]}? (y/n) " and STDOUT.flush
+      print "Are you sure you want to deploy branch '#{args[:branch]}' to #{args[:env]}? (y/n) " and STDOUT.flush
       char = $stdin.getc
       if char != ?y && char != ?Y
         Rake::Task['deploy:abandon_deploy'].invoke 
