@@ -19,12 +19,11 @@ namespace :deploy do
   task :before_deploy, :env, :branch do |t, args|
     puts "Deploying #{args[:branch]} to #{args[:env]}"
 
-    # Ensure the user wants to deploy a non-master branch to production
-    if args[:env] == :production && args[:branch] != 'master'
-      print "Are you sure you want to deploy '#{args[:branch]}' to production? (y/n) " and STDOUT.flush
+    if (args[:env] == :production && args[:branch] != 'master') || (args[:env] == :staging && args[:branch] != 'develop')
+      print "Are you sure you want to deploy branch'#{args[:branch]}' to #{args[:env]}? (y/n) " and STDOUT.flush
       char = $stdin.getc
       if char != ?y && char != ?Y
-        puts "Deploy aborted"
+        puts "Deployment aborted"
         exit 
       end
     end
