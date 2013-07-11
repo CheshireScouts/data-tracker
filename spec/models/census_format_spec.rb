@@ -13,4 +13,8 @@ describe CensusFormat do
   it 'is invalid without an Xpath definition' do
     FactoryGirl.build(:census_format, table_xpath: nil).should_not be_valid
   end
+
+  it 'has many census table formats' do
+    FactoryGirl.create(:census_format).should have_many(:census_table_formats)
+  end
 end
