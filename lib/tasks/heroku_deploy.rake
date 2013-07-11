@@ -1,7 +1,7 @@
 # List of environments and their heroku git remotes
 ENVIRONMENTS = {
   :staging => 'staging',
-  :production => 'production'
+  :production => 'production',
   :github => 'github'
 }
 
