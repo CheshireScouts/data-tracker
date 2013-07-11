@@ -18,21 +18,19 @@ namespace :deploy do
   end
 
   task :before_deploy, :env, :branch do |t, args|
-    puts "Deploying #{args[:branch]} to #{args[:env]}"
+    puts "Deploying branch '#{args[:branch]}' to #{args[:env]}"
 
-    
-    
     status =`git status`.strip
     
     unless status.include?("nothing to commit, working directory clean")
-     puts "Uncommitted changes in working directory:"
+     puts "Uncommitted changes in working directory"
      puts status
      Rake::Task['deploy:abandon_deploy'].invoke 
     end
 
     if (args[:env] == :production && args[:branch] != 'master') || (args[:env] == :staging && args[:branch] != 'develop')
       print "Are you sure you want to deploy branch '#{args[:branch]}' to #{args[:env]}? (y/n) " and STDOUT.flush
-      char = $stdin.getch
+      char = $stdin.getc
       if char != ?y && char != ?Y
         Rake::Task['deploy:abandon_deploy'].invoke 
       end
@@ -55,13 +53,15 @@ namespace :deploy do
       puts "Updating #{ENVIRONMENTS[args[:env]]} from branch '#{args[:branch]}'"
       `git push #{ENVIRONMENTS[args[:env]]} +#{args[:branch]}:master`
 
-      if args[:branch] == 'master' && args[:branch] == 'develop'
-      print "Also push changes to Github? (y/n)" and STDOUT.flush
-      char = $stdin.getc
-      if char == ?y || char == ?Y
-        `git push #{ENVIRONMENTS[:github]} #{args[:branch]}`
+      if args[:branch] == 'master' || args[:branch] == 'develop'
+        print "Also push changes to Github? (y/n)" and STDOUT.flush
+        char = $stdin.getc
+        if char == ?y || char == ?Y
+          `git push #{ENVIRONMENTS[:github]} #{args[:branch]}`
+        end
       end
-    end
+
     end
   end
+
 end
