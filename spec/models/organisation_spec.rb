@@ -30,8 +30,4 @@ describe Organisation do
     FactoryGirl.create(:organisation).should have_many(:awards)
   end
 
-  it 'has many composites' do
-    FactoryGirl.create(:organisation).should have_many(:composites)
-  end
-
 end
