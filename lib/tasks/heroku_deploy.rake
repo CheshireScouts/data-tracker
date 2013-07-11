@@ -2,6 +2,7 @@
 ENVIRONMENTS = {
   :staging => 'staging',
   :production => 'production'
+  :github => 'github'
 }
 
 namespace :deploy do
@@ -18,6 +19,8 @@ namespace :deploy do
 
   task :before_deploy, :env, :branch do |t, args|
     puts "Deploying #{args[:branch]} to #{args[:env]}"
+
+    
     
     status =`git status`.strip
     
@@ -29,7 +32,7 @@ namespace :deploy do
 
     if (args[:env] == :production && args[:branch] != 'master') || (args[:env] == :staging && args[:branch] != 'develop')
       print "Are you sure you want to deploy branch '#{args[:branch]}' to #{args[:env]}? (y/n) " and STDOUT.flush
-      char = $stdin.getc
+      char = $stdin.getch
       if char != ?y && char != ?Y
         Rake::Task['deploy:abandon_deploy'].invoke 
       end
@@ -39,11 +42,6 @@ namespace :deploy do
 
   task :after_deploy, :env, :branch do |t, args|
     puts "Deployment Complete"
-    print "Also push changes to Github? (y/n)" and STDOUT.flush
-    char = $stdin.getc
-    if char == ?y && char == ?Y
-      `git push github #{args[:branch]}`
-    end
   end
 
   task :abandon_deploy do
@@ -56,6 +54,14 @@ namespace :deploy do
     FileUtils.cd Rails.root do
       puts "Updating #{ENVIRONMENTS[args[:env]]} from branch '#{args[:branch]}'"
       `git push #{ENVIRONMENTS[args[:env]]} +#{args[:branch]}:master`
+
+      if args[:branch] == 'master' && args[:branch] == 'develop'
+      print "Also push changes to Github? (y/n)" and STDOUT.flush
+      char = $stdin.getc
+      if char == ?y || char == ?Y
+        `git push #{ENVIRONMENTS[:github]} #{args[:branch]}`
+      end
+    end
     end
   end
 end
