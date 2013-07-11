@@ -21,7 +21,7 @@ namespace :deploy do
     
     status =`git status`.strip
     
-    unless status.include?("nothing to commit (working directory clean)")
+    unless status.include?("nothing to commit, working directory clean")
      puts "Uncommitted changes in working directory:"
      puts status
      Rake::Task['deploy:abandon_deploy'].invoke 
