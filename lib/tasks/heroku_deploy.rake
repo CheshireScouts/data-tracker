@@ -39,17 +39,22 @@ namespace :deploy do
 
   task :after_deploy, :env, :branch do |t, args|
     puts "Deployment Complete"
+    print "Also push changes to Github? (y/n)" and STDOUT.flush
+    char = $stdin.getc
+    if char == ?y && char == ?Y
+      `git push github #{args[:branch]}`
+    end
   end
 
   task :abandon_deploy do
     puts "--"
-    puts "Deployment aborted"
+    puts "Deployment Aborted"
     exit 
   end
 
   task :update_code, :env, :branch do |t, args|
     FileUtils.cd Rails.root do
-      puts "Updating #{ENVIRONMENTS[args[:env]]} with branch #{args[:branch]}"
+      puts "Updating #{ENVIRONMENTS[args[:env]]} from branch '#{args[:branch]}'"
       `git push #{ENVIRONMENTS[args[:env]]} +#{args[:branch]}:master`
     end
   end
