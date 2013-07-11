@@ -22,8 +22,20 @@ describe Year do
     FactoryGirl.build(:year, county_census_format: nil).should_not be_valid
   end
 
-  it 'should have many memberships' do
+  it 'has many memberships' do
     FactoryGirl.create(:year).should have_many(:memberships)
+  end
+
+  it 'belongs to a group_census_format' do
+    FactoryGirl.create(:year).should belong_to(:group_census_format)
+  end
+
+  it 'belongs to a district_census_format' do
+    FactoryGirl.create(:year).should belong_to(:district_census_format)
+  end
+
+  it 'belongs to a county_census_format' do
+    FactoryGirl.create(:year).should belong_to(:county_census_format)
   end
   
 end

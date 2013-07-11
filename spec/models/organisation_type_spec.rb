@@ -10,7 +10,7 @@ describe OrganisationType do
     FactoryGirl.build(:organisation_type, name: nil).should_not be_valid
   end
 
-  it 'should have many organisations' do
+  it 'has many organisations' do
     FactoryGirl.create(:organisation_type).should have_many(:organisations)
   end
   

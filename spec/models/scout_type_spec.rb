@@ -10,7 +10,7 @@ describe ScoutType do
     FactoryGirl.build(:scout_type, name: nil).should_not be_valid
   end
 
-  it 'should have many memberships' do
+  it 'has many memberships' do
     FactoryGirl.create(:scout_type).should have_many(:memberships)
   end
   
