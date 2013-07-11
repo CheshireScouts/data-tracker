@@ -21,5 +21,9 @@ describe Year do
   it 'is invalid without a county census format' do
     FactoryGirl.build(:year, county_census_format: nil).should_not be_valid
   end
+
+  it 'should have many memberships' do
+    FactoryGirl.create(:year).should have_many(:memberships)
+  end
   
 end
