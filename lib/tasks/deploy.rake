@@ -1,3 +1,5 @@
+require 'colorize'
+
 ENVIRONMENTS = {
   :staging => 'staging',
   :production => 'production',
@@ -10,15 +12,23 @@ namespace :deploy do
     task env do
       current_branch = `git branch | grep ^* | awk '{ print $2 }'`.strip
 
+      puts "Running test specs"
+      Rake::Task['test:spec'].invoke
+
+      puts "All test specs passed"
+      puts "Validating git status"
       Rake::Task['deploy:before_deploy'].invoke(env, current_branch)
+
+      puts "Deploying branch '#{args[:branch]}' to #{args[:env]}"
       Rake::Task['deploy:update_code'].invoke(env, current_branch)
+      
       Rake::Task['deploy:after_deploy'].invoke(env, current_branch)
+      complete_deploy(env, current_branch)
     end
   end
 
   task :before_deploy, :env, :branch do |t, args|
-    puts "Deploying branch '#{args[:branch]}' to #{args[:env]}"
-
+    
     status =`git status`.strip 
     unless status.include?("nothing to commit, working directory clean")
      print_message :error, "Uncommitted changes in working directory"
@@ -36,7 +46,6 @@ namespace :deploy do
   end
 
   task :after_deploy, :env, :branch do |t, args|
-    print_message :footer, "Completed deployment of branch '#{args[:branch]}' to #{ENVIRONMENTS[args[:env]]}"
   end
 
 
@@ -56,6 +65,10 @@ namespace :deploy do
     end
   end
 
+  def complete_deploy(env, branch)
+    print_message :footer, "Completed deployment of branch '#{args[:branch]}' to #{ENVIRONMENTS[args[:env]]}"
+  end
+
   def abandon_deploy(env, branch)
     print_message :footer, "Abandoned deployment of branch '#{branch}' to #{env}"
     exit
@@ -69,7 +82,7 @@ namespace :deploy do
     end
 
     if type == :error
-      puts "ERROR: #{message}"
+      puts "ERROR: #{message}".red
     end
   end
 
