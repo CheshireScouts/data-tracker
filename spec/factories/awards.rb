@@ -5,4 +5,8 @@ FactoryGirl.define do
     f.award_type :factory => :award_type
     f.scout_type :factory => :scout_type
   end
+
+  factory :invalid_award, parent: :award do |f|
+    f.organisation nil
+  end
 end

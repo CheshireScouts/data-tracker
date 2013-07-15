@@ -1,6 +1,5 @@
 require 'spec_helper'
 
-
 describe AwardTypesController do
 
   before(:each) do
