@@ -6,4 +6,8 @@ FactoryGirl.define do
     f.membership_type :factory => :membership_type
     f.scout_type :factory => :scout_type
   end
+
+  factory :invalid_membership, parent: :membership do |f|
+    f.organisation nil
+  end
 end
