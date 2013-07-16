@@ -5,4 +5,8 @@ FactoryGirl.define do
     f.district_census_format :factory => :census_format
     f.county_census_format :factory => :census_format
   end
+
+  factory :invalid_year, parent: :year do |f|
+    f.name nil
+  end
 end
