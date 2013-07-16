@@ -6,4 +6,8 @@ FactoryGirl.define do
     f.status 'Open'
     f.organisation_type :factory => :organisation_type
   end
+
+  factory :invalid_organisation, parent: :organisation do |f|
+    f.name nil
+  end
 end
