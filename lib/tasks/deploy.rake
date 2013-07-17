@@ -19,7 +19,7 @@ namespace :deploy do
       puts "Validating git status"
       Rake::Task['deploy:before_deploy'].invoke(env, current_branch)
 
-      puts "Deploying branch '#{args[:branch]}' to #{args[:env]}"
+      puts "Deploying branch '#{current_branch}' to #{env}"
       Rake::Task['deploy:update_code'].invoke(env, current_branch)
       
       Rake::Task['deploy:after_deploy'].invoke(env, current_branch)
@@ -35,12 +35,17 @@ namespace :deploy do
      abandon_deploy(args[:env], args[:branch])
     end
 
-    if (args[:env] == :production && args[:branch] != 'master') || (args[:env] == :staging && args[:branch] != 'develop')
-      print "Are you sure you want to deploy branch '#{args[:branch]}' to #{args[:env]}? (y/n) " and STDOUT.flush
+    if (args[:env] == :staging && args[:branch] != 'develop')
+      print "'#{args[:branch]}' is not the development branch. Do you wish to continue? (y/n) " and STDOUT.flush
       char = $stdin.getc
       if char != ?y && char != ?Y
         abandon_deploy(args[:env], args[:branch])
       end
+    end
+
+    if (args[:env] == :production && args[:branch] !~ /^(release|hotfix)/)
+      print_message :error, "'#{args[:branch]}'' is not a release or hotfix branch"
+      abandon_deploy(args[:env], args[:branch])
     end
 
   end
@@ -66,7 +71,7 @@ namespace :deploy do
   end
 
   def complete_deploy(env, branch)
-    print_message :footer, "Completed deployment of branch '#{args[:branch]}' to #{ENVIRONMENTS[args[:env]]}"
+    print_message :footer, "Completed deployment of branch '#{branch}' to #{env}"
   end
 
   def abandon_deploy(env, branch)
