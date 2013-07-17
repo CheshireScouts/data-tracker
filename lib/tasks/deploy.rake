@@ -66,7 +66,7 @@ namespace :deploy do
   end
 
   def complete_deploy(env, branch)
-    print_message :footer, "Completed deployment of branch '#{args[:branch]}' to #{ENVIRONMENTS[args[:env]]}"
+    print_message :footer, "Completed deployment of branch '#{branch}' to #{env}"
   end
 
   def abandon_deploy(env, branch)
