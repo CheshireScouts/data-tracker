@@ -19,7 +19,7 @@ namespace :deploy do
       puts "Validating git status"
       Rake::Task['deploy:before_deploy'].invoke(env, current_branch)
 
-      puts "Deploying branch '#{args[:branch]}' to #{args[:env]}"
+      puts "Deploying branch '#{curent_branch}' to #{env}"
       Rake::Task['deploy:update_code'].invoke(env, current_branch)
       
       Rake::Task['deploy:after_deploy'].invoke(env, current_branch)
