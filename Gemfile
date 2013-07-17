@@ -37,10 +37,10 @@ group :test do
   gem 'rspec-rails'
   gem 'shoulda-matchers'
   gem 'factory_girl_rails'
-  gem 'cucumber-rails'
+  gem 'cucumber-rails', require: false
   gem 'capybara'
   gem 'database_cleaner'
   gem 'faker'
-  gem 'simplecov'
+  gem 'simplecov', require: false
   gem 'colorize'
 end
