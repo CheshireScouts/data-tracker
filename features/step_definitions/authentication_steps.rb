@@ -44,6 +44,10 @@ When /^I return to the site$/ do
   visit root_path
 end
 
+When /^I try to visit an administration page$/ do
+  visit organisations_path
+end
+
 # Then
 Then /^I should see an invalid credentials message$/ do
   page.should have_content "Invalid email or password."
@@ -73,4 +77,8 @@ end
 
 Then /^I should not see the administration menu$/ do
   page.should_not have_link "Admin"
+end
+
+Then /^I should see an unauthorized access message$/ do
+  page.should have_content "You are not authorized to access this page."
 end

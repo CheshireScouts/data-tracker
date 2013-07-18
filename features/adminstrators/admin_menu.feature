@@ -12,3 +12,5 @@ Feature: Administration Menu
 		Given I exist as a user without administrator rights
 		When I sign in
 		Then I should not see the administration menu
+		When I try to visit an administration page
+		Then I should see an unauthorized access message
