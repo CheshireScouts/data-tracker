@@ -8,6 +8,14 @@ Given /^I exist as a registered user$/ do
   create_user
 end
 
+Given /^I exist as a user with administrator rights$/ do
+  create_admin_user
+end
+
+Given /^I exist as a user without administrator rights$/ do
+  create_user
+end
+
 Given /^I am signed in$/ do
   create_user
   sign_in
@@ -57,4 +65,12 @@ end
 Then /^(I should not be signed in|I should be signed out)$/ do |s|
   page.should have_link "Login", href: new_user_session_path
   page.should_not have_link "Logout", href: destroy_user_session_path
+end
+
+Then /^I should see the administration menu$/ do
+  page.should have_link "Admin"
+end
+
+Then /^I should not see the administration menu$/ do
+  page.should_not have_link "Admin"
 end

@@ -17,6 +17,11 @@ def create_user
   @user = FactoryGirl.create(:user, @visitor)
 end
 
+def create_admin_user
+  create_user
+  @user.add_role :admin
+end
+
 def sign_in
   visit new_user_session_path
   fill_in "Email", with: @visitor[:email]
