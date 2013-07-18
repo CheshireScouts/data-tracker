@@ -41,12 +41,16 @@ Then "I should see a successful sign in message" do
   page.should have_content "Signed in successfully."
 end
 
+Then "I should see a successful sign out message" do
+  page.should have_content "Signed out successfully"
+end
+
 Then "I should be signed in" do
   page.should have_link "Logout"
   page.should_not have_link "Login"
 end
 
-Then "I should not be signed in" do
+Then /^(I should not be signed in|I should be signed out)$/ do |s|
   page.should have_link "Login"
   page.should_not have_link "Logout"
 end

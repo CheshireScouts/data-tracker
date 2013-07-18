@@ -23,3 +23,9 @@ def sign_in
   fill_in "Password", with: @visitor[:password]
   click_button "Sign in"
 end
+
+def sign_out
+  # We can't simply use the Capybara 'visit' method here as it sends a GET request to the server
+  # and Devise uses a DELETE request for sign out
+  page.driver.submit :delete, destroy_user_session_path, {}
+end
