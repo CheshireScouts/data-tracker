@@ -62,8 +62,8 @@ Then /^I should see a successful sign out message$/ do
 end
 
 Then /^I should be signed in$/ do
-  page.should have_link "Logout"
-  page.should_not have_link "Login"
+  page.should have_link "Logout", href: destroy_user_session_path
+  page.should_not have_link "Login", href: new_user_session_path
 end
 
 Then /^(I should not be signed in|I should be signed out)$/ do |s|
