@@ -8,9 +8,18 @@ Given "I exist as a registered user" do
   create_user
 end
 
+Given "I am signed in" do
+  create_user
+  sign_in
+end
+
 # When
 When /^I sign in$/ do
   sign_in
+end
+
+When "I sign out" do
+  sign_out
 end
 
 When /^I sign in with an incorrect password$/ do
@@ -33,11 +42,11 @@ Then "I should see a successful sign in message" do
 end
 
 Then "I should be signed in" do
-  page.should have_content "Logout"
-  page.should_not have_content "Login"
+  page.should have_link "Logout"
+  page.should_not have_link "Login"
 end
 
 Then "I should not be signed in" do
-  page.should have_content "Login"
-  page.should_not have_content "Logout"
+  page.should have_link "Login"
+  page.should_not have_link "Logout"
 end
