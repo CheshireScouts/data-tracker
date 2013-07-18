@@ -8,3 +8,5 @@ Feature: Sign in
 		When I sign out
 		Then I should see a successful sign out message
 		And I should be signed out
+		When I return to the site
+		Then I should be signed out
