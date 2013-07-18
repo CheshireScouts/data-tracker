@@ -71,14 +71,6 @@ Then /^(I should not be signed in|I should be signed out)$/ do |s|
   page.should_not have_link "Logout", href: destroy_user_session_path
 end
 
-Then /^I should see the administration menu$/ do
-  page.should have_link "Admin"
-end
-
-Then /^I should not see the administration menu$/ do
-  page.should_not have_link "Admin"
-end
-
 Then /^I should see an unauthorized access message$/ do
   page.should have_content "You are not authorized to access this page."
 end
