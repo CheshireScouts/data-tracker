@@ -20,6 +20,11 @@ Then /^I should see a menu item to show my account details$/ do
   page.should have_link "My Account", edit_user_registration_path
 end
 
+Then /^I should see a menu item to access the reports$/ do
+	page.should have_link "Reports"
+end
+
 Then /^I should see an account updated message$/ do
 	page.should have_content "You updated your account successfully"
 end
+
