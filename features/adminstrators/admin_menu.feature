@@ -7,17 +7,17 @@ Feature: Administration Menu
 		Given I exist as a user with administrator rights
 		When I sign in
 		Then I should see the administration menu
-		And The administration menu should include an option to manage users
-		And The administration menu should include an option to manage organisations
-		And The administration menu should include an option to manage organisation types
-		And The administration menu should include an option to manage membership records
-		And The administration menu should include an option to manage scout types
-		And The administration menu should include an option to manage membership types
-		And The administration menu should include an option to manage award records
-		And The administration menu should include an option to manage award types
-		And The administration menu should include an option to manage years
-		And The administration menu should include an option to manage census formats
-		And The administration menu should include an option to manage census table formats
+		And The administration menu should include an item to manage users
+		And The administration menu should include an item to manage organisations
+		And The administration menu should include an item to manage organisation types
+		And The administration menu should include an item to manage membership records
+		And The administration menu should include an item to manage scout types
+		And The administration menu should include an item to manage membership types
+		And The administration menu should include an item to manage award records
+		And The administration menu should include an item to manage award types
+		And The administration menu should include an item to manage years
+		And The administration menu should include an item to manage census formats
+		And The administration menu should include an item to manage census table formats
 
 	Scenario: A user without administrator rights signs in
 		Given I exist as a user without administrator rights

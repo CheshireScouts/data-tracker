@@ -12,7 +12,7 @@ Then /^I should see the administration menu$/ do
   page.should have_link "Admin"
 end
 
-Then /^The administration menu should include an option to manage (.*)$/ do |menu_item|
+Then /^The administration menu should include an item to manage (.*)$/ do |menu_item|
 	menu_item = menu_item.tr(" ", "_")
 	menu_items = {
 		users: users_path,
