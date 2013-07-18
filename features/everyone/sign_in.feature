@@ -1,4 +1,4 @@
-Feature: Sign in
+Feature: Sign out
 	In order to access the application
 	A registered user
 	Must be able to sign in
@@ -14,6 +14,8 @@ Feature: Sign in
 		When I sign in
 		Then I should see a successful sign in message
 		And I should be signed in
+		When I return to the site
+		Then I should be signed in
 
 	Scenario: Registered user attempts to sign in with an incorrect email address
 		Given I exist as a registered user
