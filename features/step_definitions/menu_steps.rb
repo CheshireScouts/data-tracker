@@ -1,5 +1,5 @@
 When /^I click the account details menu item$/ do
-	visit edit_user_registration_path
+	visit edit_user_registration_url
 end
 
 When /^I change my account details$/ do
@@ -15,19 +15,20 @@ end
 Then /^The administration menu should include an item to manage (.*)$/ do |menu_item|
 	menu_item = menu_item.tr(" ", "_")
 	menu_items = {
-		users: users_path,
-		organisations: organisations_path,
-		organisation_types: organisation_types_path,
-		membership_records: memberships_path,
-		scout_types: scout_types_path,
-		membership_types: membership_types_path,
-		award_records: awards_path,
-		award_types: award_types_path,
-		years: years_path,
-		census_formats: census_formats_path,
-		census_table_formats: census_table_formats_path
+		users: users_url,
+		organisations: organisations_url,
+		organisation_types: organisation_types_url,
+		membership_records: memberships_url,
+		scout_types: scout_types_url,
+		membership_types: membership_types_url,
+		award_records: awards_url,
+		award_types: award_types_url,
+		years: years_url,
+		census_formats: census_formats_url,
+		census_table_formats: census_table_formats_url
 	}
-	page.should have_link menu_item, href: menu_items[menu_item.to_sym]
+	click_link(menu_item)
+	current_url.should eq(menu_items[menu_item.to_sym])
 end
 
 Then /^I should not see the administration menu$/ do
