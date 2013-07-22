@@ -1,4 +1,4 @@
-Feature: Sign out
+Feature: Sign in
 	In order to access the application
 	A registered user
 	Must be able to sign in
