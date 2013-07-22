@@ -23,7 +23,7 @@ When /^I click the (.*) button for the record I wish to (.*)$/ do |button_name, 
 	end
 end
 
-When /^I enter the details for a new (.*)$/ do |class_name|
+When /^I enter the details for a new award type$/ do
 	award_type = FactoryGirl.attributes_for(:award_type)
 	fill_in "award_type_code", with: award_type[:code]
 	fill_in "award_type_name", with: award_type[:name]
@@ -32,6 +32,17 @@ end
 When /^I enter the new details for the award type$/ do
 	fill_in "award_type_code", with: "NEWCODE"
 	fill_in "award_type_name", with: "New Name"
+end
+
+When /^I enter the details for a new census format$/ do
+	census_format = FactoryGirl.attributes_for(:census_format)
+	fill_in "census_format_name", with: census_format[:name]
+	fill_in "census_format_table_xpath", with: census_format[:table_xpath]
+end
+
+When /^I enter the new details for the census format$/ do
+	fill_in "census_format_name", with: "New Name"
+	fill_in "census_format_table_xpath", with: "New Xpath"
 end
 
 Then /^I should see a successful creation message$/ do
