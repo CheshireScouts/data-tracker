@@ -21,6 +21,11 @@ Given /^I am signed in$/ do
   sign_in
 end
 
+Given /^I am signed in as a user with administrator rights$/ do
+  create_admin_user
+  sign_in
+end
+
 # When
 When /^I sign in$/ do
   sign_in
