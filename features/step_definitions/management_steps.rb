@@ -45,6 +45,17 @@ When /^I enter the new details for the census format$/ do
 	fill_in "census_format_table_xpath", with: "New Xpath"
 end
 
+When /^I enter the details for a new membership type$/ do
+	membership_type = FactoryGirl.attributes_for(:membership_type)
+	fill_in "membership_type_code", with: membership_type[:code]
+	fill_in "membership_type_name", with: membership_type[:name]
+end
+
+When /^I enter the new details for the membership type$/ do
+	fill_in "membership_type_code", with: "NEWCODE"
+	fill_in "membership_type_name", with: "New Name"
+end
+
 When /^I enter the details for a new scout type$/ do
 	scout_type = FactoryGirl.attributes_for(:scout_type)
 	fill_in "scout_type_code", with: scout_type[:code]
