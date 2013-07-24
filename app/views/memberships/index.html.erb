@@ -3,7 +3,7 @@
 <% organisations = Organisation.find(:all) %>
 <% membership_types = MembershipType.find(:all) %>
 <div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human %></h1>
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
 </div>
 
 <%= link_to t('.new', :default => t("helpers.links.new")),
@@ -23,7 +23,7 @@
   </thead>
   <tbody>
     <% @memberships.each do |membership| %>
-      <tr>
+      <tr id=<%= membership.id %>>
         <td><%= link_to membership.organisation.name, organisation_path(membership.organisation) %></td>
         <td><%= membership.year.name %></td>
         <td><%= membership.scout_type.name %></td>

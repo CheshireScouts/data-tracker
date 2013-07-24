@@ -67,6 +67,22 @@ When /^I enter the new details for the census format$/ do
 	fill_in "census_format_table_xpath", with: "New Xpath"
 end
 
+When /^I enter the details for a new membership$/ do
+	year = Year.first
+	organisation = Organisation.first
+	membership_type = MembershipType.first
+	scout_type = ScoutType.first
+	select year[:name], from: 'membership_year_id'
+	select organisation[:name], from: 'membership_organisation_id'
+	select membership_type[:name], from: 'membership_membership_type_id'
+	select scout_type[:name], from: 'membership_scout_type_id'
+	fill_in 'membership_head_count', with: '5'
+end
+
+When /^I enter the new details for the membership$/ do
+	fill_in 'membership_head_count', with: '12'
+end
+
 When /^I enter the details for a new membership type$/ do
 	membership_type = FactoryGirl.attributes_for(:membership_type)
 	fill_in "membership_type_code", with: membership_type[:code]
