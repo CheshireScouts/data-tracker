@@ -29,7 +29,6 @@ When /^I click the (.*) button for the record I wish to (.*)$/ do |button_name, 
 end
 
 When /^I enter the details for a new award$/ do
-	award = FactoryGirl.attributes_for(:award)
 	year = Year.first
 	organisation = Organisation.first
 	award_type = AwardType.first
@@ -38,7 +37,7 @@ When /^I enter the details for a new award$/ do
 	select organisation[:name], from: 'award_organisation_id'
 	select award_type[:name], from: 'award_award_type_id'
 	select scout_type[:name], from: 'award_scout_type_id'
-	fill_in 'award_award_count', with: award[:count]
+	fill_in 'award_award_count', with: '5'
 end
 
 When /^I enter the new details for the award$/ do
