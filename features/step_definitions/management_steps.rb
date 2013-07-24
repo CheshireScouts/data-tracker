@@ -66,6 +66,22 @@ When /^I enter the new details for the census format$/ do
 	fill_in "census_format_table_xpath", with: "New Xpath"
 end
 
+When /^I enter the details for a new census table format$/ do
+	census_format = CensusFormat.first
+	scout_type = ScoutType.first
+	membership_type = MembershipType.first
+	select census_format[:name], from: 'census_table_format_census_format_id'
+	select scout_type[:name], from: 'census_table_format_scout_type_id'
+	select membership_type[:name], from: 'census_table_format_membership_type_id'
+	fill_in 'census_table_format_column', with: '5'
+	fill_in 'census_table_format_row', with: '10'
+end
+
+When /^I enter the new details for the census table format$/ do
+	fill_in 'census_table_format_column', with: '8'
+	fill_in 'census_table_format_row', with: '12'
+end
+
 When /^I enter the details for a new membership$/ do
 	year = Year.first
 	organisation = Organisation.first
