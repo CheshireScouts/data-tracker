@@ -24,7 +24,7 @@ upload_awards_path,
   </thead>
   <tbody>
     <% @awards.each do |award| %>
-      <tr>
+      <tr id=<%= award.id %>>
         <td><%= link_to award.organisation.name, organisation_path(award.organisation) %></td>
         <td><%= award.year.name%></td>
         <td><%= award.award_type.name %></td>
