@@ -3,6 +3,11 @@ Given /^there is (a|an) (.*) I wish to (.*)$/ do |article, class_name, action|
 	@test_instance = FactoryGirl.create(class_name)
 end
 
+Given /^at least one (.*) record exists$/ do |class_name|
+	class_name = class_name.tr(" ", "_")
+	FactoryGirl.create(class_name)
+end
+
 When /^I visit the new (.*) page$/ do |class_name|
 	class_name = class_name.tr(" ", "_")
 	visit "/#{class_name}s/new"
@@ -76,6 +81,19 @@ end
 When /^I enter the new details for the scout type$/ do
 	fill_in "scout_type_code", with: "NEWCODE"
 	fill_in "scout_type_name", with: "New Name"
+end
+
+When /^I enter the details for a new year$/ do
+	year = FactoryGirl.attributes_for(:year)
+	census_format = CensusFormat.first
+	fill_in "year_name", with: year[:name]
+	select census_format[:name], from: 'year_group_census_format_id'
+	select census_format[:name], from: 'year_district_census_format_id'
+	select census_format[:name], from: 'year_county_census_format_id'
+end
+
+When /^I enter the new details for the year$/ do
+	fill_in "year_name", with: "New Name"
 end
 
 Then /^I should see a successful creation message$/ do
