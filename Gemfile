@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 ruby '1.9.3'
 
 group :default do
-  gem 'rails', '3.2.12'
+  gem 'rails', '3.2.13'
   gem "nokogiri", "~> 1.5.6"
   gem 'jquery-rails', '= 2.0.2'
   gem "thin", ">= 1.5.0"
