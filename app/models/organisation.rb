@@ -1,7 +1,7 @@
 class Organisation < ActiveRecord::Base
   require 'csv'
 
-  STATES = %w{'Open', 'Closed'}
+  STATES = {'O' => 'Open', 'C' => 'Closed'}
   
   belongs_to :parent, :class_name => "Organisation"
   has_many :children, :class_name => "Organisation"
@@ -15,6 +15,10 @@ class Organisation < ActiveRecord::Base
   validates_presence_of :registration_no, :census_url_no, :name, :status
 
   scope :open, where(status: "Open")
+
+  def status_text
+    STATES[status]
+  end
 
   def self.import(file)
     unless file.nil?

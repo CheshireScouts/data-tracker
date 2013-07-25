@@ -1,11 +1,16 @@
 Given /^there is (a|an) (.*) I wish to (.*)$/ do |article, class_name, action|
 	class_name = class_name.tr(" ", "_")
-	@test_instance = FactoryGirl.create(class_name)
+	if class_name == 'organisation'
+		root_organisation = FactoryGirl.create(:organisation)
+		@test_instance = FactoryGirl.create(:organisation, parent: root_organisation)
+	else
+		@test_instance = FactoryGirl.create(class_name)
+	end
 end
 
 Given /^at least one (.*) record exists$/ do |class_name|
 	class_name = class_name.tr(" ", "_")
-	FactoryGirl.create(class_name)
+		FactoryGirl.create(class_name)
 end
 
 When /^I visit the new (.*) page$/ do |class_name|
@@ -107,6 +112,21 @@ end
 When /^I enter the new details for the membership type$/ do
 	fill_in "membership_type_code", with: "NEWCODE"
 	fill_in "membership_type_name", with: "New Name"
+end
+
+When /^I enter the details for a new organisation$/ do
+	parent = Organisation.first
+	organisation_type = OrganisationType.first
+	select parent[:name], from: 'organisation_parent_id'
+	select organisation_type[:name], from: 'organisation_organisation_type_id'
+	fill_in 'organisation_name', with: 'Test organisation'
+	fill_in 'organisation_registration_no', with: '12345'
+	fill_in 'organisation_census_url_no', with: '12345'
+	choose 'organisation_status_o'
+end
+
+When /^I enter the new details for the organisation$/ do
+	fill_in 'organisation_name', with: 'Updated name'
 end
 
 When /^I enter the details for a new organisation type$/ do
