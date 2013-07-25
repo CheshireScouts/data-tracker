@@ -96,6 +96,7 @@ When /^I enter the details for a new membership$/ do
 	select organisation[:name], from: 'membership_organisation_id'
 	select membership_type[:name], from: 'membership_membership_type_id'
 	select scout_type[:name], from: 'membership_scout_type_id'
+	choose 'membership_gender_f'
 	fill_in 'membership_head_count', with: '5'
 end
 
