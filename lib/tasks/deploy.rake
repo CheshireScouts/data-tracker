@@ -37,16 +37,8 @@ namespace :deploy do
      abandon_deploy(args[:env], args[:branch])
     end
 
-    if (args[:env] == :staging && args[:branch] != 'develop')
-      print "'#{args[:branch]}' is not the development branch. Do you wish to continue? (y/n) " and STDOUT.flush
-      char = $stdin.getc
-      if char != ?y && char != ?Y
-        abandon_deploy(args[:env], args[:branch])
-      end
-    end
-
-    if (args[:env] == :production && args[:branch] !~ /^(release|hotfix)/)
-      print_message :error, "'#{args[:branch]}'' is not a release or hotfix branch"
+    if (args[:env] == :production && args[:branch] != 'master')
+      print_message :error, "'#{args[:branch]}'' is not the master branch"
       abandon_deploy(args[:env], args[:branch])
     end
 
