@@ -10,7 +10,7 @@ end
 
 Given /^at least one (.*) record exists$/ do |class_name|
 	class_name = class_name.tr(" ", "_")
-		FactoryGirl.create(class_name)
+	FactoryGirl.create(class_name)
 end
 
 When /^I visit the new (.*) page$/ do |class_name|

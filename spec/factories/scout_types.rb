@@ -1,5 +1,6 @@
 FactoryGirl.define do
   factory :scout_type do |f|
+    f.code {Faker::Lorem.word}
     f.name {Faker::Lorem.word}
   end
 
