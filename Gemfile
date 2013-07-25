@@ -28,6 +28,7 @@ group :assets do
 end
 
 group :development do
+  gem 'rspec-rails'
   gem "quiet_assets", ">= 1.0.1"
   gem "better_errors", ">= 0.3.2"
   gem "binding_of_caller", ">= 0.6.8"
@@ -37,6 +38,11 @@ group :test do
   gem 'rspec-rails'
   gem 'shoulda-matchers'
   gem 'factory_girl_rails'
+  gem 'cucumber-rails', require: false
   gem 'capybara'
+  gem 'launchy'
+  gem 'database_cleaner'
   gem 'faker'
+  gem 'simplecov', require: false
+  gem 'colorize'
 end

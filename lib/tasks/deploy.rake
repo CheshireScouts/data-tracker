@@ -1,3 +1,5 @@
+require 'colorize'
+
 ENVIRONMENTS = {
   :staging => 'staging',
   :production => 'production',
@@ -10,33 +12,47 @@ namespace :deploy do
     task env do
       current_branch = `git branch | grep ^* | awk '{ print $2 }'`.strip
 
+      puts "Running unit tests"
+      Rake::Task['spec'].invoke
+
+      puts "Running acceptance tests"
+      Rake::Task['cucumber'].invoke
+
+      puts "Validating git status"
       Rake::Task['deploy:before_deploy'].invoke(env, current_branch)
+
+      puts "Deploying branch '#{current_branch}' to #{env}"
       Rake::Task['deploy:update_code'].invoke(env, current_branch)
+      
       Rake::Task['deploy:after_deploy'].invoke(env, current_branch)
+      complete_deploy(env, current_branch)
     end
   end
 
   task :before_deploy, :env, :branch do |t, args|
-    puts "Deploying branch '#{args[:branch]}' to #{args[:env]}"
-
+    
     status =`git status`.strip 
     unless status.include?("nothing to commit, working directory clean")
      print_message :error, "Uncommitted changes in working directory"
      abandon_deploy(args[:env], args[:branch])
     end
 
-    if (args[:env] == :production && args[:branch] != 'master') || (args[:env] == :staging && args[:branch] != 'develop')
-      print "Are you sure you want to deploy branch '#{args[:branch]}' to #{args[:env]}? (y/n) " and STDOUT.flush
+    if (args[:env] == :staging && args[:branch] != 'develop')
+      print "'#{args[:branch]}' is not the development branch. Do you wish to continue? (y/n) " and STDOUT.flush
       char = $stdin.getc
       if char != ?y && char != ?Y
         abandon_deploy(args[:env], args[:branch])
       end
     end
 
+    if (args[:env] == :production && args[:branch] !~ /^(release|hotfix)/)
+      print_message :error, "'#{args[:branch]}'' is not a release or hotfix branch"
+      abandon_deploy(args[:env], args[:branch])
+    end
+
   end
 
   task :after_deploy, :env, :branch do |t, args|
-    print_message :footer, "Completed deployment of branch '#{args[:branch]}' to #{ENVIRONMENTS[args[:env]]}"
   end
 
 
@@ -56,6 +72,10 @@ namespace :deploy do
     end
   end
 
+  def complete_deploy(env, branch)
+    print_message :footer, "Completed deployment of branch '#{branch}' to #{env}"
+  end
+
   def abandon_deploy(env, branch)
     print_message :footer, "Abandoned deployment of branch '#{branch}' to #{env}"
     exit
@@ -69,7 +89,7 @@ namespace :deploy do
     end
 
     if type == :error
-      puts "ERROR: #{message}"
+      puts "ERROR: #{message}".red
     end
   end
 

@@ -15,7 +15,7 @@
   </thead>
   <tbody>
     <% @census_table_formats.each do |census_table_format| %>
-      <tr>
+      <tr id=<%= census_table_format.id %>>
         <td><%= census_table_format.census_format.name %></td>
         <td><%= census_table_format.scout_type.name %></td>
         <td><%= census_table_format.membership_type.name %></td>

@@ -21,4 +21,17 @@ describe Organisation do
   it 'is invalid without a status' do
     FactoryGirl.build(:organisation, status: nil).should_not be_valid
   end
+
+  it 'is invalid with a status of anything other than O or C' do
+    FactoryGirl.build(:organisation, status: 'P').should_not be_valid
+  end
+
+  it 'has many memberships' do
+    FactoryGirl.create(:organisation).should have_many(:memberships)
+  end
+
+  it 'has many awards' do
+    FactoryGirl.create(:organisation).should have_many(:awards)
+  end
+
 end

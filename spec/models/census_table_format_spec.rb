@@ -17,4 +17,17 @@ describe CensusTableFormat do
   it 'is invalid without a membership type' do
     FactoryGirl.build(:census_table_format, membership_type: nil).should_not be_valid
   end
+
+  it 'has a census_format' do
+    FactoryGirl.create(:census_table_format).should belong_to(:census_format)
+  end
+
+  it 'has a scout_type' do
+    FactoryGirl.create(:census_table_format).should belong_to(:scout_type)
+  end
+
+  it 'has a membership_type' do
+    FactoryGirl.create(:census_table_format).should belong_to(:membership_type)
+  end
+
 end

@@ -12,7 +12,7 @@
   </thead>
   <tbody>
     <% @membership_types.each do |membership_type| %>
-      <tr>
+      <tr id=<%= membership_type.id %>>
         <td><%= membership_type.code %></td>
         <td><%= membership_type.name %></td>
         <td>

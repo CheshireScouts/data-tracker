@@ -13,25 +13,25 @@
               <ul class="nav">
                 <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Reports<b class="caret"></b></a>
                   <ul class="dropdown-menu">
-                    <li><%= link_to 'Membership', membership_report_path(Organisation.roots.first.id) %></li>
-                    <li><%= link_to 'Awards', awards_report_path(Organisation.roots.first.id) %></li>
-                    <li><%= link_to 'Composite', composite_report_path(Organisation.roots.first.id) %></li>
+                    <li><%= link_to 'Membership', '/reports/membership' %></li>
+                    <li><%= link_to 'Awards', '/reports/awards' %></li>
+                    <li><%= link_to 'Composite', '/reports/composite' %></li>
                   </ul>
                 </li>
                 <% if current_user.has_role? :admin %>
                   <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Admin<b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                      <li><%= link_to 'Users', users_path %></li>
-                      <li><%= link_to 'Organisations', organisations_path %></li>
-                      <li><%= link_to 'Organisation Types', organisation_types_path %></li>
-                      <li><%= link_to 'Membership Records', memberships_path %></li>
-                      <li><%= link_to 'Scout Types', scout_types_path %></li>
-                      <li><%= link_to 'Membership Types', membership_types_path %></li>
-                      <li><%= link_to 'Award Records', awards_path %></li>
-                      <li><%= link_to 'Award Types', award_types_path %></li>
-                      <li><%= link_to 'Years', years_path %></li>
-                      <li><%= link_to 'Census Formats', census_formats_path %></li>
-                      <li><%= link_to 'Census Table Formats', census_table_formats_path %></li>
+                      <li><%= link_to 'Users', users_path, id: :users %></li>
+                      <li><%= link_to 'Organisations', organisations_path, id: :organisations%></li>
+                      <li><%= link_to 'Organisation Types', organisation_types_path, id: :organisation_types%></li>
+                      <li><%= link_to 'Membership Records', memberships_path, id: :membership_records %></li>
+                      <li><%= link_to 'Scout Types', scout_types_path, id: :scout_types %></li>
+                      <li><%= link_to 'Membership Types', membership_types_path, id: :membership_types %></li>
+                      <li><%= link_to 'Award Records', awards_path, id: :award_records %></li>
+                      <li><%= link_to 'Award Types', award_types_path, id: :award_types %></li>
+                      <li><%= link_to 'Years', years_path, id: :years %></li>
+                      <li><%= link_to 'Census Formats', census_formats_path, id: :census_formats %></li>
+                      <li><%= link_to 'Census Table Formats', census_table_formats_path, id: :census_table_formats %></li>
                     </ul>
                   </li>
                 <% end %>

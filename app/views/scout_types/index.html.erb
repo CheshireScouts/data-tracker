@@ -12,7 +12,7 @@
   </thead>
   <tbody>
     <% @scout_types.each do |scout_type| %>
-      <tr>
+      <tr id=<%= scout_type.id %>>
         <td><%= link_to scout_type.code, scout_type_path(scout_type) %></td>
         <td><%= link_to scout_type.name, scout_type_path(scout_type) %></td>
         <td>
