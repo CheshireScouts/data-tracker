@@ -13,8 +13,9 @@ class Organisation < ActiveRecord::Base
   has_ancestry
 
   validates_presence_of :registration_no, :census_url_no, :name, :status
+  validates_inclusion_of :status, in: STATES
 
-  scope :open, where(status: "Open")
+  scope :open, where(status: 'O')
 
   def status_text
     STATES[status]
