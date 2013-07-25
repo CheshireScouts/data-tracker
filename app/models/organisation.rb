@@ -14,7 +14,7 @@ class Organisation < ActiveRecord::Base
 
   validates_presence_of :registration_no, :census_url_no, :name, :status
 
-  scope :open, where(status: "Open")
+  scope :open, where(status: 'O')
 
   def status_text
     STATES[status]
