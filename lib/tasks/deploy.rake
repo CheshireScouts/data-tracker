@@ -12,10 +12,12 @@ namespace :deploy do
     task env do
       current_branch = `git branch | grep ^* | awk '{ print $2 }'`.strip
 
-      puts "Running test specs"
-      Rake::Task['test:spec'].invoke
+      puts "Running unit tests"
+      Rake::Task['spec'].invoke
 
-      puts "All test specs passed"
+      puts "Running acceptance tests"
+      Rake::Task['cucumber'].invoke
+
       puts "Validating git status"
       Rake::Task['deploy:before_deploy'].invoke(env, current_branch)
 
