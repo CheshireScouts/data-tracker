@@ -12,7 +12,7 @@
   </thead>
   <tbody>
     <% @census_formats.each do |census_format| %>
-      <tr>
+      <tr id=<%= census_format.id %>>
         <td><%= link_to census_format.name, census_format_path(census_format) %></td>
         <td><%= census_format.table_xpath %></td>
         <td>

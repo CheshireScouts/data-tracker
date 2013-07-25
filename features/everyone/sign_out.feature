@@ -1,4 +1,4 @@
-Feature: Sign in
+Feature: Sign out
 	In order to protect against unauthorised access to the application
 	A signed in user
 	Must be able to sign out

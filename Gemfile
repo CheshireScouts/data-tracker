@@ -40,6 +40,7 @@ group :test do
   gem 'factory_girl_rails'
   gem 'cucumber-rails', require: false
   gem 'capybara'
+  gem 'launchy'
   gem 'database_cleaner'
   gem 'faker'
   gem 'simplecov', require: false

@@ -14,7 +14,7 @@
   </thead>
   <tbody>
     <% @years.each do |year| %>
-      <tr>
+      <tr id=<%= year.id %>>
         <td><%= link_to year.name, year_path(year) %></td>
         <td><%= year.group_census_format.name if year.group_census_format %></td>
         <td><%= year.district_census_format.name if year.district_census_format %></td>

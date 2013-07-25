@@ -25,11 +25,11 @@ upload_organisations_path,
   </thead>
   <tbody>
     <% @organisations.each do |organisation| %>
-      <tr>
+      <tr id=<%= organisation.id %>>
         <td><%= link_to organisation.registration_no, organisation_path(organisation) %></td>
         <td><%= organisation.census_url_no %></td>
         <td><%= link_to organisation.name, organisation_path(organisation) %></td>
-        <td><%= organisation.status %></td>
+        <td><%= organisation.status_text %></td>
         <td><%= organisation.organisation_type.name %></td>
         <td><%= link_to organisation.parent.name, organisation_path(organisation.parent) if organisation.parent %></td>
         <td>

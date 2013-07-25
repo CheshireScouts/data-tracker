@@ -7,11 +7,11 @@ FactoryGirl.define do
   end
 
   factory :admin, :parent => :user do
-    roles       { [ FactoryGirl.create(:admin_role) ] }
+    roles { [ FactoryGirl.create(:admin_role) ] }
   end
 
   factory :role do
-    name        { "Role_#{rand(9999)}" }
+    name { Faker::Lorem.word }
   end
 
   factory :admin_role, :parent => :role do

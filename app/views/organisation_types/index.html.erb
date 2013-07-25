@@ -12,7 +12,7 @@
   </thead>
   <tbody>
     <% @organisation_types.each do |organisation_type| %>
-      <tr>
+      <tr id=<%= organisation_type.id %>>
         <td><%= link_to organisation_type.code, organisation_type_path(organisation_type) %></td>
         <td><%= link_to organisation_type.name, organisation_type_path(organisation_type) %></td>
         <td>
