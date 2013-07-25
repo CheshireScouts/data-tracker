@@ -1,24 +1,17 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
-# Environment variables (ENV['...']) are set in the file config/application.yml.
-# See http://railsapps.github.com/rails-environment-variables.html
-puts 'ROLES'
 YAML.load(ENV['ROLES']).each do |role|
   Role.find_or_create_by_name({ :name => role }, :without_protection => true)
   puts 'role: ' << role
 end
-puts 'DEFAULT USERS'
+puts 'Created user ROLES'
+
 user = User.find_or_create_by_email :name => ENV['ADMIN_NAME'].dup, :email => ENV['ADMIN_EMAIL'].dup, :password => ENV['ADMIN_PASSWORD'].dup, :password_confirmation => ENV['ADMIN_PASSWORD'].dup
 puts 'user: ' << user.name
 user.add_role :admin
+puts 'Created default users'
 
 Membership.delete_all
 Award.delete_all
+puts 'Deleted existing membership and awards records'
 
 ScoutType.delete_all
 beavers = ScoutType.create!(code: 'BEAVERS', name: 'Beaver Scouts')
@@ -136,6 +129,6 @@ Year.create(name: 2013, group_census_format: group_format_2004, district_census_
 puts 'Created Years'
 
 Organisation.delete_all
-Organisation.create(registration_no: '00108', census_url_no: '108', name: 'Cheshire Scouts', status: 'Open', organisation_type: county)
-puts 'Created Cheshire Scouts'
+Organisation.create(registration_no: '00108', census_url_no: '108', name: 'Cheshire Scouts', status: 'O', organisation_type: county)
+puts 'Created root organisation: Cheshire Scouts'
 
