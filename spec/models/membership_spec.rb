@@ -22,6 +22,18 @@ describe Membership do
     FactoryGirl.build(:membership, scout_type: nil).should_not be_valid
   end
 
+  it 'is invalid without a gender' do
+    FactoryGirl.build(:membership, gender: nil).should_not be_valid
+  end
+
+  it 'is invalid if gender is anything other than M or F' do
+    FactoryGirl.build(:membership, gender: 'P').should_not be_valid
+  end
+
+  it 'is invalid without a head_count' do
+    FactoryGirl.build(:membership, head_count: nil).should_not be_valid
+  end
+
   it 'has an organisation' do
     FactoryGirl.create(:membership).should belong_to(:organisation)
   end
