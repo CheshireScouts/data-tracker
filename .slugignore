@@ -1,0 +1,4 @@
+/spec
+/features
+/lib/tasks/deploy.rake
+/lib/tasks/cucumber.rake
