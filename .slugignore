@@ -2,3 +2,4 @@
 /features
 /lib/tasks/deploy.rake
 /lib/tasks/cucumber.rake
+/lib/tasks/test.rake
