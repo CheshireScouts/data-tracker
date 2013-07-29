@@ -44,8 +44,8 @@ AwardType.create(code: 'QUEEN', name: 'Queen\'s Scout Award')
 puts 'Created Award Types'
 
 MembershipType.delete_all
-member = MembershipType.create!(code: 'M', name: 'Member')
-associate = MembershipType.create!(code: 'A', name: 'Associate Member')
+member = MembershipType.create!(name: 'Member')
+associate = MembershipType.create!(name: 'Associate Member')
 puts 'Created Membership Types'
 
 OrganisationType.delete_all
