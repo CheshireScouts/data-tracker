@@ -14,47 +14,47 @@ Award.delete_all
 puts 'Deleted existing membership and awards records'
 
 ScoutType.delete_all
-beavers = ScoutType.create!(code: 'BEAVERS', name: 'Beaver Scouts')
-cubs = ScoutType.create!(code: 'CUBS', name: 'Cub Scouts')
-scouts = ScoutType.create!(code: 'SCOUTS', name: 'Scouts')
-explorers = ScoutType.create!(code: 'EXPLORERS', name: 'Explorer Scouts')
-network = ScoutType.create!(code: 'NETWORK', name: 'Network Scouts')
-support = ScoutType.create!(code: 'SUPPORT', name: 'Active Support')
-leaders = ScoutType.create!(code: 'LEADERS', name: 'Leaders')
-assistants = ScoutType.create!(code: 'ASSISTANTS', name: 'Sectional Assistants')
-instructors = ScoutType.create!(code: 'INSTRUCTORS', name: 'Skills Instructors')
-advisers = ScoutType.create!(code: 'ADVISERS', name: 'Advisers')
-office = ScoutType.create!(code: 'OFFICE', name: 'Ofiice Bearers')
-commissioners = ScoutType.create!(code: 'COMMISSIONERS', name: 'Commissioners')
-scouters = ScoutType.create!(code: 'SCOUTERS', name: 'Scouters')
-admin = ScoutType.create!(code: 'ADMIN', name: 'Administrators')
-other = ScoutType.create!(code: 'OTHER', name: 'Other Adults')
+beavers = ScoutType.create!(name: 'Beaver Scouts')
+cubs = ScoutType.create!(name: 'Cub Scouts')
+scouts = ScoutType.create!(name: 'Scouts')
+explorers = ScoutType.create!(name: 'Explorer Scouts')
+network = ScoutType.create!(name: 'Network Scouts')
+support = ScoutType.create!(name: 'Active Support')
+leaders = ScoutType.create!(name: 'Leaders')
+assistants = ScoutType.create!(name: 'Sectional Assistants')
+instructors = ScoutType.create!(name: 'Skills Instructors')
+advisers = ScoutType.create!(name: 'Advisers')
+office = ScoutType.create!(name: 'Ofiice Bearers')
+commissioners = ScoutType.create!(name: 'Commissioners')
+scouters = ScoutType.create!(name: 'Scouters')
+admin = ScoutType.create!(name: 'Administrators')
+other = ScoutType.create!(name: 'Other Adults')
 puts 'Created Scout Types'
 
 AwardType.delete_all
-AwardType.create(code: 'BRONZE', name: 'Chief Scout\'s Bronze Award')
-AwardType.create(code: 'SILVER', name: 'Chief Scout\'s Silver Award')
-AwardType.create(code: 'GOLD', name: 'Chief Scout\'s Gold Award')
-AwardType.create(code: 'DIAMOND', name: 'Chief Scout\'s Diamond Award')
-AwardType.create(code: 'PLATINUM', name: 'Chief Scout\'s Platinum Award')
-AwardType.create(code: 'DOFEBRONZE', name: 'Duke of Edinburgh\'s Bronze Award')
-AwardType.create(code: 'DOFESILVER', name: 'Duke of Edinburgh\'s Silver Award')
-AwardType.create(code: 'DOFEGOLD', name: 'Duke of Edinburgh\'s Gold Award')
-AwardType.create(code: 'QUEEN', name: 'Queen\'s Scout Award')
+AwardType.create(name: 'Chief Scout\'s Bronze Award')
+AwardType.create(name: 'Chief Scout\'s Silver Award')
+AwardType.create(name: 'Chief Scout\'s Gold Award')
+AwardType.create(name: 'Chief Scout\'s Diamond Award')
+AwardType.create(name: 'Chief Scout\'s Platinum Award')
+AwardType.create(name: 'Duke of Edinburgh\'s Bronze Award')
+AwardType.create(name: 'Duke of Edinburgh\'s Silver Award')
+AwardType.create(name: 'Duke of Edinburgh\'s Gold Award')
+AwardType.create(name: 'Queen\'s Scout Award')
 puts 'Created Award Types'
 
 MembershipType.delete_all
-member = MembershipType.create!(code: 'M', name: 'Member')
-associate = MembershipType.create!(code: 'A', name: 'Associate Member')
+member = MembershipType.create!(name: 'Member')
+associate = MembershipType.create!(name: 'Associate Member')
 puts 'Created Membership Types'
 
 OrganisationType.delete_all
-county = OrganisationType.create(code: 'COUNTY', name: 'Scout County')
-district = OrganisationType.create(code: 'DISTRICT', name: 'Scout District')
-group = OrganisationType.create(code: 'GROUP', name: 'Scout Group')
-esu = OrganisationType.create(code: 'ESU', name: 'Explorer Scout Unit')
-nu = OrganisationType.create(code: 'NETWORK', name: 'Network Unit')
-asu = OrganisationType.create(code: 'ASU', name: 'Active Support Unit')
+county = OrganisationType.create(name: 'Scout County')
+district = OrganisationType.create(name: 'Scout District')
+group = OrganisationType.create(name: 'Scout Group')
+esu = OrganisationType.create(name: 'Explorer Scout Unit')
+nu = OrganisationType.create(name: 'Network Unit')
+asu = OrganisationType.create(name: 'Active Support Unit')
 puts 'Created Organisation Types'
 
 CensusFormat.delete_all
