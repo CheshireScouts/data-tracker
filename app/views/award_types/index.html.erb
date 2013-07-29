@@ -5,7 +5,6 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th><%= model_class.human_attribute_name(:code) %></th>
       <th><%= model_class.human_attribute_name(:name) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
@@ -13,7 +12,6 @@
   <tbody>
     <% @award_types.each do |award_type| %>
       <tr id=<%= award_type.id %>>
-        <td><%= award_type.code %></td>
         <td><%= award_type.name %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),

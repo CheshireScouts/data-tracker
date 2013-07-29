@@ -32,15 +32,15 @@ other = ScoutType.create!(code: 'OTHER', name: 'Other Adults')
 puts 'Created Scout Types'
 
 AwardType.delete_all
-AwardType.create(code: 'BRONZE', name: 'Chief Scout\'s Bronze Award')
-AwardType.create(code: 'SILVER', name: 'Chief Scout\'s Silver Award')
-AwardType.create(code: 'GOLD', name: 'Chief Scout\'s Gold Award')
-AwardType.create(code: 'DIAMOND', name: 'Chief Scout\'s Diamond Award')
-AwardType.create(code: 'PLATINUM', name: 'Chief Scout\'s Platinum Award')
-AwardType.create(code: 'DOFEBRONZE', name: 'Duke of Edinburgh\'s Bronze Award')
-AwardType.create(code: 'DOFESILVER', name: 'Duke of Edinburgh\'s Silver Award')
-AwardType.create(code: 'DOFEGOLD', name: 'Duke of Edinburgh\'s Gold Award')
-AwardType.create(code: 'QUEEN', name: 'Queen\'s Scout Award')
+AwardType.create(name: 'Chief Scout\'s Bronze Award')
+AwardType.create(name: 'Chief Scout\'s Silver Award')
+AwardType.create(name: 'Chief Scout\'s Gold Award')
+AwardType.create(name: 'Chief Scout\'s Diamond Award')
+AwardType.create(name: 'Chief Scout\'s Platinum Award')
+AwardType.create(name: 'Duke of Edinburgh\'s Bronze Award')
+AwardType.create(name: 'Duke of Edinburgh\'s Silver Award')
+AwardType.create(name: 'Duke of Edinburgh\'s Gold Award')
+AwardType.create(name: 'Queen\'s Scout Award')
 puts 'Created Award Types'
 
 MembershipType.delete_all
