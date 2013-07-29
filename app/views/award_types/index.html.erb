@@ -12,6 +12,7 @@
   <tbody>
     <% @award_types.each do |award_type| %>
       <tr id=<%= award_type.id %>>
+        <td><%= link_to award_type.name, award_type_path(award_type) %></td>
         <td><%= award_type.name %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
