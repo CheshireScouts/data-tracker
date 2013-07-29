@@ -49,12 +49,12 @@ associate = MembershipType.create!(name: 'Associate Member')
 puts 'Created Membership Types'
 
 OrganisationType.delete_all
-county = OrganisationType.create(code: 'COUNTY', name: 'Scout County')
-district = OrganisationType.create(code: 'DISTRICT', name: 'Scout District')
-group = OrganisationType.create(code: 'GROUP', name: 'Scout Group')
-esu = OrganisationType.create(code: 'ESU', name: 'Explorer Scout Unit')
-nu = OrganisationType.create(code: 'NETWORK', name: 'Network Unit')
-asu = OrganisationType.create(code: 'ASU', name: 'Active Support Unit')
+county = OrganisationType.create(name: 'Scout County')
+district = OrganisationType.create(name: 'Scout District')
+group = OrganisationType.create(name: 'Scout Group')
+esu = OrganisationType.create(name: 'Explorer Scout Unit')
+nu = OrganisationType.create(name: 'Network Unit')
+asu = OrganisationType.create(name: 'Active Support Unit')
 puts 'Created Organisation Types'
 
 CensusFormat.delete_all

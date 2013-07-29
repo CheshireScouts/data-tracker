@@ -1,4 +1,3 @@
-
 When /^I click the account details menu item$/ do
 	visit edit_user_registration_url
 end

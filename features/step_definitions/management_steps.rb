@@ -128,12 +128,10 @@ end
 
 When /^I enter the details for a new organisation type$/ do
 	organisation_type = FactoryGirl.attributes_for(:organisation_type)
-	fill_in "organisation_type_code", with: organisation_type[:code]
 	fill_in "organisation_type_name", with: organisation_type[:name]
 end
 
 When /^I enter the new details for the organisation type$/ do
-	fill_in "organisation_type_code", with: "NEWCODE"
 	fill_in "organisation_type_name", with: "New Name"
 end
 
