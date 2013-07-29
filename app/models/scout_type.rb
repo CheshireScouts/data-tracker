@@ -1,6 +1,6 @@
 class ScoutType < ActiveRecord::Base
   has_many :memberships, :class_name => "Membership"
-  attr_accessible :code, :name
+  attr_accessible :name
 
-  validates_presence_of :code, :name
+  validates_presence_of :name
 end
