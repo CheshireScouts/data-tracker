@@ -51,12 +51,10 @@ end
 
 When /^I enter the details for a new award type$/ do
 	award_type = FactoryGirl.attributes_for(:award_type)
-	fill_in "award_type_code", with: award_type[:code]
 	fill_in "award_type_name", with: award_type[:name]
 end
 
 When /^I enter the new details for the award type$/ do
-	fill_in "award_type_code", with: "NEWCODE"
 	fill_in "award_type_name", with: "New Name"
 end
 
@@ -106,12 +104,10 @@ end
 
 When /^I enter the details for a new membership type$/ do
 	membership_type = FactoryGirl.attributes_for(:membership_type)
-	fill_in "membership_type_code", with: membership_type[:code]
 	fill_in "membership_type_name", with: membership_type[:name]
 end
 
 When /^I enter the new details for the membership type$/ do
-	fill_in "membership_type_code", with: "NEWCODE"
 	fill_in "membership_type_name", with: "New Name"
 end
 
