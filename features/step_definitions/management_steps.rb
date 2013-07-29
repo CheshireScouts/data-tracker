@@ -137,12 +137,10 @@ end
 
 When /^I enter the details for a new scout type$/ do
 	scout_type = FactoryGirl.attributes_for(:scout_type)
-	fill_in "scout_type_code", with: scout_type[:code]
 	fill_in "scout_type_name", with: scout_type[:name]
 end
 
 When /^I enter the new details for the scout type$/ do
-	fill_in "scout_type_code", with: "NEWCODE"
 	fill_in "scout_type_name", with: "New Name"
 end
 
