@@ -15,8 +15,8 @@ class Award < ActiveRecord::Base
         record = row.to_hash
         organisation = Organisation.find_by_registration_no(record["organisation"])
         year = Year.find_by_name(record["year"])
-        award_type = AwardType.find_by_code(record["award_type"])
-        scout_type = ScoutType.find_by_code(record["scout_type"])
+        award_type = AwardType.find_by_name(record["award_type"])
+        scout_type = ScoutType.find_by_name(record["scout_type"])
         award_count = record["award_count"]
         Award.create(
           organisation: organisation, 

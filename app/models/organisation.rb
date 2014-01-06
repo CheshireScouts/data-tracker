@@ -29,7 +29,7 @@ class Organisation < ActiveRecord::Base
         census = record["census_url_no"]
         name = record["name"]
         status = record["status"]
-        type = OrganisationType.find_by_code(record["organisation_type"])
+        type = OrganisationType.find_by_name(record["organisation_type"])
         parent = Organisation.find_by_registration_no(record["parent"])
         Organisation.create!(registration_no: reg, census_url_no: census, name: name, status: status, organisation_type: type, parent: parent)
       end
