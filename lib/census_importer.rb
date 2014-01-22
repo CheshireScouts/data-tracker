@@ -4,7 +4,7 @@ class CensusImporter
     @agent = Mechanize.new
     @username = ENV['CENSUS_USERNAME']
     @password = ENV['CENSUS_PASSWORD']
-    @main_url = "http://census.sbuk.org.uk"
+    @main_url = "http://census2013.scouts.org.uk/"
     login  
   end
 
@@ -16,7 +16,7 @@ class CensusImporter
 
   def create_memberships_for_all_counties
     if @login_status
-      OrganisationType.find_by_code("COUNTY").organisations.each do |county|
+      OrganisationType.find_by_name("Scout County").organisations.each do |county|
         create_memberships_for_county(county)
       end
     end
@@ -24,7 +24,7 @@ class CensusImporter
 
   def create_memberships_for_all_districts
     if @login_status
-      OrganisationType.find_by_code("DISTRICT").organisations.each do |district|
+      OrganisationType.find_by_name("Scout District").organisations.each do |district|
         create_memberships_for_district(district)
       end
     end
@@ -32,7 +32,7 @@ class CensusImporter
 
   def create_memberships_for_all_groups
     if @login_status
-      OrganisationType.find_by_code("GROUP").organisations.each do |group|
+      OrganisationType.find_by_name("Scout Group").organisations.each do |group|
         create_memberships_for_group(group)
       end
     end
@@ -74,12 +74,12 @@ class CensusImporter
       @year = year
       @organisation_return_page = get_page_for_organisation_and_year
 
-      case @organisation.organisation_type.code
-        when "GROUP" then
+      case @organisation.organisation_type.name
+        when "Scout Group" then
           @census_format = year.group_census_format
-        when "DISTRICT" then
+        when "Scout District" then
           @census_format = year.district_census_format
-        when "COUNTY" then
+        when "Scout County" then
           @census_format = year.county_census_format
         else
           puts "No valid organisation type found for #{@organisation.registration_no}"

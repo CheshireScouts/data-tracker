@@ -51,12 +51,10 @@ end
 
 When /^I enter the details for a new award type$/ do
 	award_type = FactoryGirl.attributes_for(:award_type)
-	fill_in "award_type_code", with: award_type[:code]
 	fill_in "award_type_name", with: award_type[:name]
 end
 
 When /^I enter the new details for the award type$/ do
-	fill_in "award_type_code", with: "NEWCODE"
 	fill_in "award_type_name", with: "New Name"
 end
 
@@ -106,12 +104,10 @@ end
 
 When /^I enter the details for a new membership type$/ do
 	membership_type = FactoryGirl.attributes_for(:membership_type)
-	fill_in "membership_type_code", with: membership_type[:code]
 	fill_in "membership_type_name", with: membership_type[:name]
 end
 
 When /^I enter the new details for the membership type$/ do
-	fill_in "membership_type_code", with: "NEWCODE"
 	fill_in "membership_type_name", with: "New Name"
 end
 
@@ -132,23 +128,19 @@ end
 
 When /^I enter the details for a new organisation type$/ do
 	organisation_type = FactoryGirl.attributes_for(:organisation_type)
-	fill_in "organisation_type_code", with: organisation_type[:code]
 	fill_in "organisation_type_name", with: organisation_type[:name]
 end
 
 When /^I enter the new details for the organisation type$/ do
-	fill_in "organisation_type_code", with: "NEWCODE"
 	fill_in "organisation_type_name", with: "New Name"
 end
 
 When /^I enter the details for a new scout type$/ do
 	scout_type = FactoryGirl.attributes_for(:scout_type)
-	fill_in "scout_type_code", with: scout_type[:code]
 	fill_in "scout_type_name", with: scout_type[:name]
 end
 
 When /^I enter the new details for the scout type$/ do
-	fill_in "scout_type_code", with: "NEWCODE"
 	fill_in "scout_type_name", with: "New Name"
 end
 

@@ -1,5 +1,3 @@
-require 'colorize'
-
 ENVIRONMENTS = {
   :staging => 'staging',
   :production => 'production',
@@ -7,9 +5,11 @@ ENVIRONMENTS = {
 }
 
 namespace :deploy do
+
   ENVIRONMENTS.keys.each do |env|
     desc "Deploy to #{env}"
     task env do
+
       current_branch = `git branch | grep ^* | awk '{ print $2 }'`.strip
 
       puts "Running unit tests"

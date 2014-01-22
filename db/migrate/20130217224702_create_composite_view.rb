@@ -2,7 +2,7 @@ class CreateCompositeView < ActiveRecord::Migration
   def up
     sql = 
       'CREATE VIEW composites AS
-      SELECT c.organisation_id, c.year_id, c.scout_type_id, a.award_count, m.head_count
+      SELECT c.organisation_id, c.organisation, c.year_id, c.year, c.scout_type_id, c.scout_type, a.award_count, m.head_count
       FROM
         (SELECT 
           o.id as organisation_id, o.name as organisation,
