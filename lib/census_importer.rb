@@ -4,7 +4,7 @@ class CensusImporter
     @agent = Mechanize.new
     @username = ENV['CENSUS_USERNAME']
     @password = ENV['CENSUS_PASSWORD']
-    @main_url = "http://census2013.scouts.org.uk/"
+    @main_url = "http://census2014.scouts.org.uk/"
     login  
   end
 

@@ -58,10 +58,10 @@ asu = OrganisationType.create(name: 'Active Support Unit')
 puts 'Created Organisation Types'
 
 CensusFormat.delete_all
-group_format_2001 = CensusFormat.create(name: '2005 Group Format', table_xpath: '/html/body/table/tr[3]/td[1]/table/')
-group_format_2004 = CensusFormat.create(name: '2005 Group Format', table_xpath: '/html/body/table/tr[3]/td[1]/table/')
-district_format_2001 = CensusFormat.create(name: '2005 District Format', table_xpath: '/html/body/table/tr[3]/td[1]/table/')
-county_format_2001 = CensusFormat.create(name: '2005 County Format', table_xpath: '/html/body/table/tr[3]/td[1]/table/')
+group_format_2001 = CensusFormat.create(name: '2001 Group Format', table_xpath: '/html/body/table/tr[3]/td[1]/table/')
+group_format_2004 = CensusFormat.create(name: '2004 Group Format', table_xpath: '/html/body/table/tr[3]/td[1]/table/')
+district_format_2001 = CensusFormat.create(name: '2001 District Format', table_xpath: '/html/body/table/tr[3]/td[1]/table/')
+county_format_2001 = CensusFormat.create(name: '2001 County Format', table_xpath: '/html/body/table/tr[3]/td[1]/table/')
 
 CensusTableFormat.delete_all
 CensusTableFormat.create(census_format: group_format_2001, scout_type: beavers, membership_type: member, row: 5, column: 8)
@@ -126,6 +126,7 @@ Year.create(name: 2010, group_census_format: group_format_2004, district_census_
 Year.create(name: 2011, group_census_format: group_format_2004, district_census_format: district_format_2001, county_census_format: county_format_2001)
 Year.create(name: 2012, group_census_format: group_format_2004, district_census_format: district_format_2001, county_census_format: county_format_2001)
 Year.create(name: 2013, group_census_format: group_format_2004, district_census_format: district_format_2001, county_census_format: county_format_2001)
+Year.create(name: 2014, group_census_format: group_format_2004, district_census_format: district_format_2001, county_census_format: county_format_2001)
 puts 'Created Years'
 
 Organisation.delete_all
